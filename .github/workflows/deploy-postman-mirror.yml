@@ -1,0 +1,75 @@
+name: Deploy Postman Mirror
+
+on:
+  workflow_dispatch:
+    inputs:
+      include_json:
+        description: 'Include .json files from series/postman/vol-01-start/publish-assets'
+        required: false
+        default: true
+        type: boolean
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'scripts/**'
+      - 'series/postman/**'
+      - '_shared/guide/**'
+      - '.github/workflows/deploy-postman-mirror.yml'
+
+jobs:
+  mirror-to-collection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source repo (A)
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install app dependencies
+        run: npm install
+        working-directory: app
+
+      - name: Install scripts dependencies
+        run: npm install
+        working-directory: scripts
+
+      - name: Build publish payload
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.include_json }}" = "false" ]; then
+            node scripts/build-postman-publish.mjs --out-dir .deploy-mirror
+          else
+            node scripts/build-postman-publish.mjs --out-dir .deploy-mirror --include-json
+          fi
+
+      - name: Checkout destination repo (B)
+        uses: actions/checkout@v4
+        with:
+          repository: TBELLai/collection
+          token: ${{ secrets.TBELLAI_COLLECTION_TOKEN }}
+          path: b-repo
+
+      - name: Mirror postman payload (delete removed files)
+        run: |
+          mkdir -p b-repo/postman
+          rsync -av --delete .deploy-mirror/postman/ b-repo/postman/
+
+      - name: Commit and push when changed
+        run: |
+          cd b-repo
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to deploy."
+            exit 0
+          fi
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No staged changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: mirror postman artifacts from source"
+          git push

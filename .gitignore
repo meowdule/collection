@@ -1,0 +1,5 @@
+node_modules/
+dist/
+*.pdf
+.guide-*-tmp.pdf
+.DS_Store
