@@ -44,6 +44,12 @@ jobs:
           else
             node scripts/build-postman-publish.mjs --out-dir .deploy-mirror --include-json
           fi
+          PDF_COUNT=$(find .deploy-mirror/postman -type f -name '*.pdf' | wc -l)
+          echo "PDF count: $PDF_COUNT"
+          if [ "$PDF_COUNT" -lt 1 ]; then
+            echo "ERROR: No PDF files in .deploy-mirror/postman"
+            exit 1
+          fi
 
       - name: Checkout destination repo (B)
         uses: actions/checkout@v4
@@ -59,8 +65,13 @@ jobs:
 
       - name: Commit and push when changed
         run: |
+          PDF_COUNT=$(find "$GITHUB_WORKSPACE/.deploy-mirror/postman" -type f -name '*.pdf' | wc -l)
           cd b-repo
           if git diff --quiet && git diff --cached --quiet; then
+            if [ "$PDF_COUNT" -gt 0 ]; then
+              echo "ERROR: Built $PDF_COUNT PDF(s) but destination repo has no changes to commit."
+              exit 1
+            fi
             echo "No changes to deploy."
             exit 0
           fi

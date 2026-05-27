@@ -36,9 +36,9 @@ const outVol = path.join(outPostman, 'vol-01-start')
 await fs.rm(outRoot, { recursive: true, force: true })
 await fs.mkdir(outVol, { recursive: true })
 
-const partIds = await listPartIds(partsDir)
+const partIds = await resolvePublishPartIds(partsDir)
 if (!partIds.length) {
-  throw new Error(`No parts found under: ${partsDir}`)
+  throw new Error(`No publish parts configured under: ${partsDir}`)
 }
 
 for (const partId of partIds) {
@@ -72,6 +72,31 @@ async function listPartIds(dir) {
     .filter((e) => e.isDirectory())
     .map((e) => e.name)
     .sort()
+}
+
+/** publish-parts.json 이 있으면 해당 파트만 미러 대상 (없으면 parts/ 전체) */
+async function resolvePublishPartIds(dir) {
+  const manifestPath = path.join(dir, '..', 'publish-parts.json')
+  try {
+    const raw = await fs.readFile(manifestPath, 'utf8')
+    const ids = JSON.parse(raw)
+    if (!Array.isArray(ids) || !ids.length) {
+      throw new Error('publish-parts.json must be a non-empty array of part folder names')
+    }
+    for (const id of ids) {
+      const partDir = path.join(dir, id)
+      try {
+        const st = await fs.stat(partDir)
+        if (!st.isDirectory()) throw new Error(`not a directory: ${id}`)
+      } catch {
+        throw new Error(`publish-parts.json references missing part: ${id}`)
+      }
+    }
+    return ids
+  } catch (err) {
+    if (err && err.code === 'ENOENT') return listPartIds(dir)
+    throw err
+  }
 }
 
 function resolveArgValue(argv, key) {

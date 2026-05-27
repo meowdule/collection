@@ -49,6 +49,7 @@ node export-guide-pdf.mjs postman/vol-01-start/1-1-postman-intro
 
 - 워크플로: `.github/workflows/deploy-postman-mirror.yml`
 - 산출물 생성: `scripts/build-postman-publish.mjs`
+- 미러 대상 파트: `series/postman/vol-01-start/publish-parts.json` (없으면 `parts/` 전체)
 - B 레포 구조:
   - `postman/SERIES.md`
   - `postman/vol-01-start/*.pdf`
