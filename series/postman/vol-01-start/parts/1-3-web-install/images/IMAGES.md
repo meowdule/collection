@@ -11,5 +11,3 @@
 | `05-win-installer.png` | 설치 마법사 |
 | `06-win-finish.png` | 설치 완료 |
 | `09-first-launch.png` | 첫 화면 (웹·앱 공통) |
-
-Mac 설치 스크린샷은 추후 필요 시 추가.

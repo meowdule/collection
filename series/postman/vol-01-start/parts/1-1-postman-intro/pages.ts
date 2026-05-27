@@ -9,7 +9,8 @@ const VOL1_ROADMAP = [
   { num: '1-1', label: 'Postman이 뭔가요' },
   { num: '1-2', label: '회원가입 & 로그인' },
   { num: '1-3', label: '웹 실행 및 앱 설치' },
-  { num: '1-4', label: '화면 보기 및 Workspace 생성' },
+  { num: '1-4', label: '화면 구성 살펴보기' },
+  { num: '1-5', label: 'Workspace 만들기' },
 ]
 
 const body: ContentPageData[] = [

@@ -60,15 +60,3 @@ node export-guide-pdf.mjs postman/vol-01-start/1-1-postman-intro
   - 권한: 대상 B 레포 `contents: write`
 
 미러 모드이므로 삭제도 반영됩니다.
-즉, A에서 산출물 목록에서 빠진 파일은 B에서도 자동 삭제됩니다.
-
-CI에서 PDF export 실패 시: Puppeteer는 `CI=true`일 때 `--no-sandbox` 등을 사용합니다 (`scripts/export-guide-pdf.mjs`).
-
-## 구현 현황 (Vol.1)
-
-| Part | PDF |
-|------|-----|
-| 1-1 Postman이 뭔가요? | ✅ |
-| 1-2 회원가입 & 로그인 | ✅ |
-| 1-3 웹 실행 및 앱 설치 | ✅ |
-| 1-4 화면 보기 및 Workspace 생성 | 예정 |
