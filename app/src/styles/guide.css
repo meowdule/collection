@@ -198,7 +198,7 @@ body {
 }
 
 .block + .block {
-  margin-top: 16px;
+  margin-top: 32px;
 }
 
 .sec-label {
@@ -257,6 +257,35 @@ body {
   font-size: 13px;
   line-height: 1.75;
   color: var(--ink-2);
+}
+
+.code-block {
+  margin-bottom: 14px;
+}
+
+.code-block .code-caption {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 12px 14px;
+  background: #1e293b;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.code-block code {
+  display: block;
+  font-family: 'Consolas', 'D2Coding', 'Pretendard', monospace;
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .split-2 {

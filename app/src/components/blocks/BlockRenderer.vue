@@ -54,6 +54,11 @@ defineProps<{
         <p v-html="block.body" />
       </div>
 
+      <div v-else-if="block.kind === 'code-block'" class="code-block">
+        <p class="code-caption">{{ block.caption }}</p>
+        <pre><code>{{ block.code }}</code></pre>
+      </div>
+
       <template v-else-if="block.kind === 'split-2'">
         <div class="split-2">
           <div class="panel" :class="block.left.variant === 'post' ? 'panel-post' : 'panel-app'">

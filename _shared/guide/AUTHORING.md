@@ -150,6 +150,7 @@ guide_repo_v0.2에서 Postman 자료집 파트를 만들어줘.
 | `quote` | 인용 박스 |
 | `cards-2` / `cards-3` | 카드 그리드 (`body`는 HTML 허용, `v-html`) |
 | `key-box` | 핵심 한 줄 |
+| `code-block` | 캡션 + JSON·코드 예시 (`caption`, `code`) |
 | `split-2` | 2단 비교 |
 | `flow` | 3단 흐름 |
 | `pain-rows` | 불편함 목록 |

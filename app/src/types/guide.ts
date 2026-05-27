@@ -65,6 +65,7 @@ export type ContentBlock =
   | { kind: 'cards-2'; cards: CardItem[] }
   | { kind: 'cards-3'; cards: CardItem[] }
   | { kind: 'key-box'; headline: string; body: string }
+  | { kind: 'code-block'; caption: string; code: string }
   | { kind: 'split-2'; left: PanelBlock; right: PanelBlock; footnote?: string }
   | { kind: 'flow'; steps: FlowStep[] }
   | { kind: 'pain-rows'; items: PainItem[] }
