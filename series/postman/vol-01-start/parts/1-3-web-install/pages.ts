@@ -1,17 +1,10 @@
 import type { ContentPageData, FigureSlot } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
+import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import meta from './meta.json'
 
 export const partId = '1-3-web-install'
 export { meta }
-
-const VOL1_ROADMAP = [
-  { num: '1-1', label: 'Postman이 뭔가요' },
-  { num: '1-2', label: '회원가입 & 로그인' },
-  { num: '1-3', label: '웹 실행 및 앱 설치' },
-  { num: '1-4', label: '화면 구성 살펴보기' },
-  { num: '1-5', label: 'Workspace 만들기' },
-]
 
 function fig(code: string, caption: string): FigureSlot {
   return {
@@ -324,9 +317,9 @@ export const pages = buildPartPages({
   },
   body,
   closing: {
-    roadmapSectionLabel: 'Vol.1 로드맵',
+    roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-3',
-    roadmap: VOL1_ROADMAP,
+    roadmap: VOL01_ROADMAP,
     ctaTitle: '화면이 열렸으면 1-3은 끝!',
     // [개선] "실행 준비 끝!" → 좀 더 확인해 주는 톤
     ctaSubtitle: '1-4에서 Postman 화면 구성을 함께 살펴볼게요.',

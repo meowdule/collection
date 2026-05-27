@@ -1,17 +1,10 @@
 import type { ContentPageData } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
+import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import meta from './meta.json'
 
 export const partId = '1-1-postman-intro'
 export { meta }
-
-const VOL1_ROADMAP = [
-  { num: '1-1', label: 'Postman이 뭔가요' },
-  { num: '1-2', label: '회원가입 & 로그인' },
-  { num: '1-3', label: '웹 실행 및 앱 설치' },
-  { num: '1-4', label: '화면 구성 살펴보기' },
-  { num: '1-5', label: 'Workspace 만들기' },
-]
 
 const body: ContentPageData[] = [
   {
@@ -19,55 +12,57 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '핵심 정리',
-        title: 'Postman, 한 줄로 말하면',
+        label: '자료집 소개',
+        title: '이 자료집은 어떻게 만들어졌나요',
+        lead: 'Postman을 처음 접하는 분들이 “어디서부터 시작해야 하지?”라는 막막함 없이 바로 실습할 수 있도록 만든 <strong>따라하기형 자료집</strong>이에요. 개념 설명보다 실제로 손을 움직이는 것에 초점을 맞췄어요.',
       },
       {
-        kind: 'key-box',
-        headline: '서버(API)에 요청을 보내고, 돌아온 응답을 눈으로 확인하는 프로그램이에요.',
-        body: '화면(앱·웹)을 거치지 않고 <strong>서버와 직접 대화</strong>할 수 있어요. 업무에서는 “버그가 화면 때문인지, 서버 때문인지”를 빠르게 가르는 도구라고 보면 돼요.',
-      },
-      {
-        kind: 'section-header',
-        label: '먼저 알면 좋아요',
-        title: 'API가 뭔지 — 30초 버전',
-        lead: 'API는 “앱이 서버에게 부탁하는 약속된 창구”예요. 로그인, 목록 조회, 결제 같은 기능마다 창구가 하나씩 있다고 보면 됩니다.',
-      },
-      {
-        kind: 'split-2',
-        left: {
-          title: '🍽 비유: 카페 주문',
-          body: '<strong>손님(앱)</strong>이 메뉴판에 맞춰 주문하면, <strong>주방(서버)</strong>이 음식을 만들어 내줘요.',
-          items: [
-            '주문 내용 = <strong>Request</strong> (요청)',
-            '나온 음식 = <strong>Response</strong> (응답)',
-            '메뉴·주문 규칙 = <strong>API</strong>',
-          ],
-          variant: 'app',
-        },
-        right: {
-          title: '📮 Postman의 위치',
-          body: '손님 대신 <strong>직원이 주방에 직접</strong> “이 주문 되나요?” 하고 확인하는 도구예요.',
-          items: [
-            '앱 화면 없이도 테스트 가능',
-            '주방이 뭐라고 답했는지 글자 그대로 확인',
-            '같은 주문을 반복해서 빠르게 검증',
-          ],
-          variant: 'post',
-        },
+        kind: 'quote',
+        text: '각 파트는 하나의 행동 흐름을 기준으로 구성되어 있어요. 순서대로 따라하면 자연스럽게 Postman 사용법이 익혀집니다. 파트당 읽는 시간은 3~5분 정도예요 — Postman을 열어두고 따라하는 방식이 가장 효과적이에요.',
       },
       {
         kind: 'section-header',
-        label: '흐름',
-        title: 'Postman은 여기에서 도와줘요',
-        lead: '앱 화면을 건너뛰고, 서버와 직접 대화해서 “무슨 답이 왔는지”를 바로 확인합니다.',
+        label: '전체 흐름',
+        title: 'Vol.1~4 전체 흐름',
       },
       {
-        kind: 'flow',
-        steps: [
-          { icon: '나', iconClass: 'ico-you', title: 'Postman에서 요청', subtitle: '주소·방식·데이터 입력 후 Send' },
-          { icon: '서버', iconClass: 'ico-sv', title: '서버가 처리', subtitle: '로그인·조회·저장 등 비즈니스 로직' },
-          { icon: '응답', iconClass: 'ico-pm', title: '결과를 확인', subtitle: '성공/실패·메시지·데이터' },
+        kind: 'cards-2',
+        cards: [
+          {
+            title: 'Vol.1 · 설치 및 시작하기',
+            body: 'Postman 계정 만들기, 화면 구성 익히기, Workspace 만들기',
+          },
+          {
+            title: 'Vol.2 · 첫 번째 요청 보내기',
+            body: 'Collection 만들기, GET·POST 요청, 응답 확인, 저장·재실행',
+          },
+          {
+            title: 'Vol.3 · 변수 & 로그인 자동화',
+            body: 'Environment·변수 등록, 로그인 요청, 토큰 자동 저장·적용',
+          },
+          {
+            title: 'Vol.4 · 연속 실행',
+            body: 'Collection Runner 연속 실행, CSV/JSON 반복, 결과 확인',
+          },
+        ],
+      },
+      {
+        kind: 'tip-box',
+        html: 'Vol.1은 Postman을 처음 여는 것부터 시작해요. 아직 설치도 안 한 상태라도 괜찮아요. Vol.2부터 실제 요청 실습이 시작되고, Vol.3·4로 갈수록 <strong>반복 작업 자동화</strong> 방향으로 이어져요.',
+      },
+      {
+        kind: 'section-header',
+        label: '완료 후',
+        title: '이 자료집을 다 마치면 이런 게 가능해요',
+        lead: '지금은 생소하게 느껴지더라도, Vol.1~4를 순서대로 따라하고 나면 아래 작업들을 혼자 할 수 있게 돼요.',
+      },
+      {
+        kind: 'check-done',
+        items: [
+          'Postman에서 API 요청을 만들고 결과를 바로 확인할 수 있어요',
+          '로그인 토큰을 매번 복사·붙여넣기 하지 않고 자동으로 저장·적용할 수 있어요',
+          '여러 요청을 순서대로 한 번에 실행하고 결과를 한눈에 볼 수 있어요',
+          '팀과 같은 요청을 공유하고, 동일한 조건으로 다시 실행할 수 있어요',
         ],
       },
     ],
@@ -77,50 +72,68 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '역할',
-        title: 'Postman으로 보통 하는 일',
+        label: 'Postman 개요',
+        title: 'Postman이 뭔가요 — 한 줄로',
       },
       {
-        kind: 'cards-3',
-        cards: [
-          { icon: '①', iconBg: '#dbeafe', iconColor: '#1d4ed8', title: '단건 테스트', body: '로그인·조회·등록 API를 하나씩 눌러서 바로 결과를 봐요.' },
-          { icon: '②', iconBg: '#d1fae5', iconColor: '#047857', title: '원인 분리', body: '앱 버그인지 서버 버그인지, 응답 내용으로 먼저 좁혀요.' },
-          { icon: '③', iconBg: '#ffedd5', iconColor: '#c2410c', title: '기록·공유', body: '만든 요청을 모아 두고, 팀과 같은 조건으로 다시 써요.' },
-        ],
+        kind: 'key-box',
+        headline: '서버(API)에 요청을 보내고, 돌아온 응답을 눈으로 확인하는 도구예요.',
+        body: '앱·웹 화면 뒤에서는 앱과 서버가 계속 대화해요. 로그인 버튼을 누르면 앱이 서버에 “이 아이디·비밀번호 맞나요?”라고 묻고, 서버가 “맞아요, 여기 토큰이에요”라고 답하는 식이에요. Postman은 이 대화를 <strong>앱 화면 없이</strong> 직접 해볼 수 있게 해줘요.',
       },
       {
         kind: 'section-header',
-        label: '있을 때',
-        title: 'Postman이 있으면 이렇게 달라져요',
+        label: '30초 이해',
+        title: 'API가 뭔지 — 30초 버전',
+        lead: 'API는 앱과 서버가 대화하는 창구예요. 로그인, 목록 조회, 데이터 저장 같은 기능마다 창구가 하나씩 있다고 보면 돼요.',
       },
       {
-        kind: 'cards-2',
-        cards: [
-          { title: '🔍 응답을 그대로 본다', body: '상태 코드, 메시지, JSON 데이터를 직접 읽어요.' },
-          { title: '⚡ 속도가 빨라진다', body: '화면 이동 없이 Send 한 번으로 반복 테스트가 쉬워요.' },
-          { title: '📋 재현이 쉬워진다', body: '요청을 저장해 두면 동일 조건으로 언제든 다시 보낼 수 있어요.' },
-          { title: '🤝 소통이 명확해진다', body: '요청·응답을 캡처·공유하면 개발자와 같은 그림을 봅니다.' },
-          { title: '🧩 UI보다 먼저 검증', body: '화면 개발 전에 API만 먼저 확인해 일정을 앞당길 수 있어요.' },
-          { title: '🔁 자동화로 확장', body: '토큰 저장, Runner 등 — Vol.4·5에서 이어서 다뤄요.' },
-        ],
+        kind: 'split-2',
+        left: {
+          title: '🍽 카페 비유',
+          body: '손님(앱)이 메뉴판에 맞춰 주문하면 주방(서버)이 음식을 만들어 내줘요.',
+          items: [
+            '주문 = <strong>Request</strong> (요청)',
+            '음식 = <strong>Response</strong> (응답)',
+            '메뉴판 = <strong>API</strong>',
+          ],
+          variant: 'app',
+        },
+        right: {
+          title: '📮 Postman',
+          body: '손님 대신 직원이 주방에 직접 확인하는 도구예요.',
+          items: [
+            '“이 주문 되나요?”를 바로 물어볼 수 있어요',
+            '주방이 뭐라고 답했는지 글자 그대로 확인',
+          ],
+          variant: 'post',
+        },
       },
       {
         kind: 'section-header',
-        label: '공감 포인트',
-        title: 'Postman 없이 일할 때 — 이런 일이 자주 생겨요',
+        label: '실무',
+        title: '이런 상황에서 Postman을 써요',
+        lead: '업무 중 이런 경험이 있다면 Postman이 바로 도움이 돼요.',
       },
       {
         kind: 'pain-rows',
         items: [
-          { title: '개발자에게 매번 확인해야 해요', body: '“서버 문제예요, 앱 문제예요?”를 스스로 판단할 수 없어 소통 비용이 늘어요.' },
-          { title: '화면만 보면 원인을 몰라요', body: '오류 메시지는 짧은데, 서버가 실제로 뭐라고 답했는지 확인이 어려워요.' },
-          { title: '테스트 경로가 너무 깁니다', body: '빌드 → 로그인 → 메뉴 이동… 버튼 하나 보려고 매번 긴 과정을 반복해요.' },
-          { title: 'UI가 없으면 막막해요', body: 'API는 완성됐는데 화면이 없으면, 테스트가 통째로 밀리는 경우가 생겨요.' },
+          {
+            title: '“버그인데 화면 문제인지 서버 문제인지 모르겠어요”',
+            body: 'Postman으로 서버에 직접 요청하면 응답을 바로 확인할 수 있어요. 응답이 정상이면 화면 문제, 이상하면 서버 문제로 빠르게 나눌 수 있어요.',
+          },
+          {
+            title: '“테스트하려면 매번 로그인·화면 이동이 번거로워요”',
+            body: '요청을 저장해두고 Send 한 번으로 실행할 수 있어요. 로그인·화면 이동 없이 원하는 API를 바로 호출할 수 있어요.',
+          },
+          {
+            title: '“개발자한테 매번 물어봐야 해서 소통 비용이 높아요”',
+            body: '“서버가 이렇게 답했어요”라고 근거를 가지고 대화할 수 있어요. 요청·응답을 그대로 공유하면 재현도 쉬워져요.',
+          },
+          {
+            title: '“UI가 없는데 서버가 제대로 동작하는지 확인해야 해요”',
+            body: '화면 없이 API를 직접 호출해 결과를 확인할 수 있어요. 개발 일정을 앞당기는 데 도움이 돼요.',
+          },
         ],
-      },
-      {
-        kind: 'quote',
-        text: '“앱에서는 안 되는데, Postman에서는 된대요.” — 화면 문제와 서버 문제를 분리한 상황이에요.',
       },
     ],
   },
@@ -130,59 +143,60 @@ const body: ContentPageData[] = [
       {
         kind: 'section-header',
         label: '비교',
-        title: '앱으로만 테스트 vs Postman',
+        title: '앱으로만 테스트할 때 vs Postman',
+        lead: '앱 화면으로만 테스트하면 로그인·권한·화면 이동 등 중간 단계가 많아 어디서 막혔는지 찾기 어렵고, 서버가 실제로 뭐라고 답했는지 확인하기도 어려워요.',
       },
       {
         kind: 'split-2',
         left: {
-          title: '앱·웹 화면으로만',
+          title: '앱으로만 테스트',
           items: [
-            'UI·버튼·화면 이동까지 한꺼번에 검증',
-            '로그인·권한 등 “중간 단계”가 많이 끼어 있음',
-            '실패 시 “어디서” 막혔는지 불명확',
+            '중간 단계(로그인·화면 이동)가 많음',
+            '실패 시 원인 위치 파악이 어려움',
+            '서버 응답 원문 확인이 어려움',
           ],
           variant: 'app',
         },
         right: {
-          title: 'Postman으로',
+          title: 'Postman',
           items: [
-            '서버(API)만 따로 빠르게 확인',
-            '요청·응답을 텍스트로 그대로 공유',
-            'UI 없어도 백엔드 먼저 검증 가능',
+            '서버에 직접 요청 → 응답을 텍스트로 확인',
+            '요청 저장 후 동일 조건 재실행',
+            '팀과 요청·응답 공유 가능',
           ],
           variant: 'post',
         },
-        footnote: '실무에서는 <strong>Postman으로 서버를 먼저 확인하고 → 앱에서 최종 확인</strong>하는 순서가 자주 쓰여요.',
+        footnote: '실무에서는 <strong>Postman으로 서버를 먼저 확인 → 앱에서 최종 확인</strong>하는 순서가 자주 쓰여요.',
       },
       {
         kind: 'section-header',
-        label: '실무 예시',
-        title: '이럴 때 Postman을 써요 (4가지)',
+        label: '활용법',
+        title: '따라하기 중심이에요',
+        lead: '각 파트는 화면을 보면서 직접 실행해 보는 구조예요. 스크린샷을 보면서 같은 화면을 찾아 따라하면 돼요. 이론을 먼저 외우려 하지 않아도 괜찮아요 — 일단 따라하다 보면 자연스럽게 이해돼요.',
       },
       {
-        kind: 'cards-2',
-        cards: [
-          { title: '예시 1 · 로그인 이슈', body: '로그인 API를 직접 호출해 서버 메시지를 확인하고, 앱/서버 원인을 분리해요.' },
-          { title: '예시 2 · UI 없이 선검증', body: '화면이 없어도 회원가입/검증 API를 먼저 테스트해서 일정을 앞당겨요.' },
-          { title: '예시 3 · 목록/검색 데이터', body: '응답 JSON에서 개수를 보고 “서버가 덜 주는지/앱이 덜 그리는지”를 나눠요.' },
-          { title: '예시 4 · 버그 리포트', body: '요청·응답을 그대로 첨부해 재현이 쉬운 리포트를 만들어요.' },
-        ],
+        kind: 'tip-box',
+        html: '파트가 끝날 때마다 <strong>“이렇게 보이면 완료”</strong> 확인 항목이 있어요. 해당 화면이 보이면 다음 파트로 넘어가면 됩니다.',
       },
       {
         kind: 'section-header',
-        label: '용어 정리',
-        title: '자주 나오는 말 — 쉽게만',
+        label: '환경',
+        title: '웹이든 앱이든 괜찮아요',
+        lead: '브라우저에서 바로 쓸 수도 있고, PC에 설치해서 쓸 수도 있어요. 웹으로 먼저 시작하고 나중에 앱을 설치해도 되고, 처음부터 앱으로 시작해도 돼요.',
       },
       {
-        kind: 'term-grid',
-        terms: [
-          { term: 'API', definition: '앱과 서버가 약속한 “기능 창구”' },
-          { term: 'Request', definition: '서버에게 보내는 요청 (주문서)' },
-          { term: 'Response', definition: '서버가 돌려준 답 (영수증)' },
-          { term: 'Collection', definition: '요청들을 모아 둔 폴더 (Vol.2)' },
-          { term: 'Environment', definition: '주소·토큰 설정 묶음 (Vol.3)' },
-          { term: 'GET / POST', definition: '“가져와” / “보내·만들어”' },
-        ],
+        kind: 'tip-box',
+        html: '여는 방법은 Vol.1 <strong>1-2</strong>에서 같이 해요. 어느 쪽이든 이 자료집 실습은 동일하게 따라할 수 있어요.',
+      },
+      {
+        kind: 'section-header',
+        label: '용어',
+        title: '용어가 낯설어도 괜찮아요',
+        lead: 'API, Request, Response, Collection, Environment — 처음 등장하는 파트에서 짧게 설명하고 넘어가요. 미리 외우려 하지 않아도 돼요.',
+      },
+      {
+        kind: 'warn-box',
+        html: '<strong>막히면 이렇게 하세요.</strong> 화면이 다르게 보이거나 버튼을 못 찾겠으면 Postman UI가 업데이트된 경우일 수 있어요. 버튼 이름·위치만 조금 달라진 경우가 많아요 — 비슷한 위치에서 같은 이름을 찾아보세요. 그래도 모르겠으면 자료집 담당자에게 문의하세요.',
       },
     ],
   },
@@ -192,34 +206,33 @@ export const pages = buildPartPages({
   cover: {
     badges: ['Postman 사용법 자료집', 'Vol.1 설치 및 시작하기'],
     warmBadge: '1-1',
-    partLabel: 'PART 01 · 개념 잡기',
-    titleLines: ['Postman이', '뭔가요?'],
+    partLabel: 'PART 01 · 시리즈 소개',
+    titleLines: ['Postman이 뭔가요?'],
     leadLines: [
-      '개발 용어 몰라도 괜찮아요.',
-      '“앱과 서버가 나누는 대화”를 직접 보고 확인하는 도구, 그게 Postman이에요.',
+      'Vol.1~4로 Postman을 처음부터 실무까지',
+      '설치부터 자동화까지, 단계별로 따라하면서 익혀요',
     ],
   },
   toc: {
     goals: [
-      'Postman이 <strong>왜 필요한지</strong> 업무 맥락으로 설명할 수 있어요.',
-      'API·요청·응답을 <strong>비유로 이해</strong>하고, Postman이 어디에 끼는지 알아요.',
-      '앱만으로 테스트할 때와 <strong>무엇이 다른지</strong> 비교할 수 있어요.',
-      '실무에서 자주 나오는 상황 <strong>4가지 예시</strong>로 쓰임새를 떠올릴 수 있어요.',
+      '이 자료집이 <strong>어떤 흐름으로 구성</strong>되어 있는지 알아요.',
+      'Postman이 <strong>어떤 도구인지</strong>, 어떤 상황에서 쓰는지 말할 수 있어요.',
+      'Vol.1부터 <strong>어떻게 따라하면 되는지</strong> 감을 잡았어요.',
     ],
-    quote: '지금은 설치가 목표가 아니라, “왜 쓰는지”만 잡으면 돼요. 계정·로그인은 다음 파트(1-2)에서 같이 해요.',
+    quote: '이 파트 흐름: 자료집 구성 소개 → Postman 개요 → 활용법 안내',
     flowCards: [
-      { title: '왜 쓰는지(필요성)', body: '“없으면 불편한 이유”부터 공감 포인트로 시작해요.' },
-      { title: '한 줄 정의 + API 이해', body: '주문 비유로 Request → Response 흐름을 잡아요.' },
-      { title: '앱 테스트 vs Postman', body: '원인 분리(앱/서버)를 어떻게 하는지 비교해요.' },
-      { title: '실무 예시 + 용어', body: '자주 겪는 상황 4개와 용어를 짧게 정리해요.' },
+      { title: '자료집 구성 소개', body: '만든 이유 · Vol.1~4 · 완료 후 가능한 일' },
+      { title: 'Postman 개요', body: '한 줄 정의 · API 비유 · 실무 상황' },
+      { title: '앱 vs Postman', body: '테스트 방식 차이 · 실무 순서' },
+      { title: '활용법 안내', body: '따라하기 · 웹/앱 · 용어 · 막힐 때' },
     ],
   },
   body,
   closing: {
-    roadmapSectionLabel: 'Vol.1 로드맵',
+    roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-1',
-    roadmap: VOL1_ROADMAP,
-    ctaTitle: '개념은 잡혔어요. 다음은 계정 만들기!',
-    ctaSubtitle: '1-2에서 회원가입·로그인하고 Postman 계정을 연결해 볼 거예요.',
+    roadmap: VOL01_ROADMAP,
+    ctaTitle: 'Vol.1부터 시작해요',
+    ctaSubtitle: '1-2에서 Postman을 열고 계정을 연결하는 것부터 같이 해볼게요.',
   },
 })

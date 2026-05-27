@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/src/*"],
+      "@series/*": ["series/*"],
+      "@shared/*": ["_shared/*"]
+    }
+  },
+  "include": [
+    "app/src/**/*.ts",
+    "app/src/**/*.vue",
+    "series/**/*.ts",
+    "_shared/**/*.ts"
+  ],
+  "exclude": ["**/node_modules", "app/dist"]
+}

@@ -53,6 +53,7 @@ series/<series>/<vol>/parts/<part-id>/
 ```ts
 import type { ContentPageData } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
+import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import meta from './meta.json'
 
 export const partId = '1-2-signup-login'
@@ -86,21 +87,23 @@ export const pages = buildPartPages({
   },
   body,
   closing: {
-    roadmapSectionLabel: 'Vol.1 로드맵',
+    roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-2',
-    roadmap: [
-      { num: '1-1', label: 'Postman이 뭔가요' },
-      { num: '1-2', label: '회원가입 & 로그인' },
-      { num: '1-3', label: '웹 실행 및 앱 설치' },
-      { num: '1-4', label: '화면 보기 및 Workspace 생성' },
-    ],
+    roadmap: VOL01_ROADMAP,
     ctaTitle: '계정 연결 완료! 다음은 Postman 실행',
     ctaSubtitle: '1-3에서 웹 또는 Windows 앱으로 Postman을 실행해 볼 거예요.',
   },
 })
 ```
 
-### 4. 레지스트리 등록
+### 4. 시리즈 로드맵 (공통)
+
+Postman 시리즈 로드맵은 `series/postman/roadmap.ts` 한 파일에서 관리합니다. Vol.2~ 추가 시 `POSTMAN_VOL_ROADMAPS`만 확장합니다.
+
+- Vol.1: `VOL01_ROADMAP`, `VOL01_ROADMAP_SECTION_LABEL`
+- Part: `import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'`
+
+### 5. 레지스트리 등록
 
 `app/src/lib/guide-registry.ts`에 경로 추가.
 
