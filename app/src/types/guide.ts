@@ -62,6 +62,7 @@ export type ContentBlock =
   | { kind: 'section-header'; label: string; title: string; lead?: string }
   | { kind: 'goals'; items: string[] }
   | { kind: 'quote'; text: string }
+  | { kind: 'text'; text: string }
   | { kind: 'cards-2'; cards: CardItem[] }
   | { kind: 'cards-3'; cards: CardItem[] }
   | { kind: 'key-box'; headline: string; body: string }

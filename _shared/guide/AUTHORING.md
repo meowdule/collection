@@ -148,6 +148,7 @@ guide_repo_v0.2에서 Postman 자료집 파트를 만들어줘.
 | `section-header` | 섹션 제목 |
 | `goals` | 체크리스트 (p2는 템플릿 사용) |
 | `quote` | 인용 박스 |
+| `text` | 일반 본문 한 줄·단락 (`text`) |
 | `cards-2` / `cards-3` | 카드 그리드 (`body`는 HTML 허용, `v-html`) |
 | `key-box` | 핵심 한 줄 |
 | `code-block` | 캡션 + JSON·코드 예시 (`caption`, `code`) |

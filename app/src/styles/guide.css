@@ -237,6 +237,13 @@ body {
   margin-bottom: 14px;
 }
 
+.text-block {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  margin: 0;
+}
+
 .key-box {
   background: linear-gradient(135deg, var(--sky) 0%, #f0f7ff 100%);
   border: 1px solid #c7dcf7;

@@ -20,30 +20,29 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '먼저 체크',
-        title: '이번 단계에서 할 일',
+        label: '웹으로 열기',
+        title: 'postman.com에 접속해요',
+        lead: '설치 없이 브라우저에서 바로 시작할 수 있어요. Chrome, Edge 등 최신 브라우저를 사용하세요.',
       },
       {
         kind: 'key-box',
-        headline: '이번 단계에서는 Postman 계정을 만들고 로그인합니다.',
-        body: '로그인 후에는 <strong>Collection 저장</strong>, <strong>환경 동기화</strong>, <strong>팀 공유</strong> 기능을 사용할 수 있어요.',
+        headline: 'https://www.postman.com/',
+        body: '검색창에서 찾으면 광고 링크가 섞일 수 있어요. 위 주소를 주소창에 직접 붙여 넣으세요.',
       },
       {
-        kind: 'split-2',
-        left: {
-          title: '이메일로 회원가입',
-          body: '회사 이메일로 계정을 만들고 인증 메일 확인까지 진행합니다.',
-          variant: 'app',
-        },
-        right: {
-          title: 'Google 계정으로 로그인',
-          body: 'Google 로그인 창에서 회사 계정을 선택해 바로 로그인할 수 있어요.',
-          variant: 'post',
-        },
-      },
-      {
-        kind: 'tip-box',
-        html: '<strong>안내.</strong> 회사에서 사용하는 계정 정책이나 SSO가 있다면 회사 안내를 우선하세요.<br>인증 메일이 보이지 않으면 스팸함 또는 프로모션함도 확인해보세요.',
+        kind: 'steps',
+        steps: [
+          {
+            title: '브라우저 주소창에 postman.com 입력',
+            body: '브라우저 주소창에 <strong>postman.com</strong>을 입력하고 Enter를 눌러요.',
+            figure: fig('images/01-postman-home.png', 'Postman 홈 화면 — Sign Up · Sign In 버튼이 보이는 화면'),
+          },
+          {
+            title: '화면 확인',
+            body: 'Sign Up 또는 Sign In 버튼이 보이면 정상이에요. 계정이 없으면 아래 회원가입 단계로, 이미 있으면 로그인 단계로 넘어가세요.',
+            figure: fig('images/02-signup-signin-closeup.png', 'Sign Up · Sign In 버튼 클로즈업'),
+          },
+        ],
       },
     ],
   },
@@ -52,33 +51,33 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: 'STEP 1',
-        title: '계정 만들기 (이메일 기준)',
-        lead: '이미 계정이 있다면 아래 로그인 섹션으로 넘어가도 됩니다.',
+        label: '회원가입',
+        title: '계정 만들기',
+        lead: '이미 Postman 계정이 있다면 이 페이지는 건너뛰고 로그인 단계로 넘어가세요.',
       },
       {
         kind: 'steps',
         steps: [
           {
-            title: 'Postman 실행 후 Sign up 선택',
-            body: '첫 화면에서 <strong>Sign up</strong> 또는 <strong>Create account</strong> 버튼을 찾습니다.',
-            figure: fig('images/01-start-signup.png', '첫 실행 화면 — Sign up 버튼이 보이는 화면'),
+            title: 'Sign Up 클릭',
+            body: '홈 화면에서 <strong>Sign Up</strong> 버튼을 클릭해요.',
+            figure: fig('images/03-signup-button.png', 'Sign Up 버튼'),
           },
           {
-            title: '이메일/비밀번호 입력',
-            body: '회사에서 사용할 이메일을 입력하고 비밀번호를 설정합니다. (팀 정책이 있으면 그 정책에 맞춰요.)',
-            figure: fig('images/02-signup-form.png', 'Sign up 입력 폼 — Email / Password'),
+            title: '이메일·비밀번호 입력',
+            body: '사용할 이메일 주소와 비밀번호를 입력해요. 회사 계정 정책이 있다면 그 정책에 맞춰서 입력하세요.',
+            figure: fig('images/04-email-password-form.png', '이메일·비밀번호 입력 폼'),
           },
           {
             title: '인증 메일 확인',
-            body: '메일함에서 인증 메일을 열고 <strong>Verify</strong> 버튼을 눌러 인증합니다. 스팸함도 확인하세요.',
-            figure: fig('images/03-verify-email.png', '인증 메일 예시 — Verify 버튼'),
+            body: '입력한 메일함에서 Postman 인증 메일을 열고 <strong>Verify</strong> 버튼을 클릭해요. 메일이 안 보이면 스팸함도 확인하세요.',
+            figure: fig('images/05-verify-email.png', '인증 메일 예시 — Verify 버튼'),
           },
         ],
       },
       {
         kind: 'warn-box',
-        html: '<strong>인증 메일이 안 와요</strong> — 스팸함 확인 → 1~2분 기다리기 → “재전송” 버튼이 있으면 눌러보기 → 그래도 안 되면 IT에 메일 보안 정책 확인 요청.',
+        html: '<strong>인증 메일이 안 와요</strong> — 스팸함 확인 → 1~2분 기다리기 → 재전송 버튼이 있으면 눌러보기. 그래도 안 오면 회사 메일 보안 설정으로 외부 인증 메일이 차단된 경우일 수 있어요. IT 담당자에게 문의하세요.',
       },
     ],
   },
@@ -87,33 +86,33 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: 'STEP 2',
-        title: '로그인하기 (이메일 / Google)',
-        lead: '회사에서는 Google 계정 또는 SSO가 더 흔할 수 있어요. 화면에 보이는 옵션 기준으로 선택하면 됩니다.',
+        label: '로그인',
+        title: '계정으로 로그인하기',
+        lead: '이메일 또는 Google 계정으로 로그인할 수 있어요. 어느 쪽이든 로그인 후 화면은 동일해요. 방금 회원가입을 했다면 인증(Verify) 완료 후 여기에서 Sign In만 해주면 돼요.',
       },
       {
         kind: 'steps',
         steps: [
           {
-            title: 'Sign in 선택',
-            body: '첫 화면 또는 우측 상단에서 <strong>Sign in</strong> 버튼을 찾습니다.',
-            figure: fig('images/04-start-signin.png', 'Sign in 진입 화면'),
+            title: 'Sign In 클릭',
+            body: '홈 화면에서 <strong>Sign In</strong> 버튼을 클릭해요.',
+            figure: fig('images/06-signin-button.png', 'Sign In 버튼'),
           },
           {
             title: '로그인 방식 선택',
-            body: '<strong>Email</strong>: 이메일/비밀번호로 로그인 · <strong>Google</strong>: Google 로그인 창이 뜨면 회사 계정을 선택',
-            figure: fig('images/05-signin-methods.png', 'Sign in 옵션 화면 (Email / Google 등)'),
+            body: '이메일로 가입했다면 이메일·비밀번호를 입력해요. Google 계정으로 로그인하려면 <strong>Continue with Google</strong>을 클릭하고 계정을 선택해요.',
+            figure: fig('images/07-login-methods.png', '로그인 방식 선택 화면 — 이메일 입력 또는 Google 버튼'),
           },
           {
             title: '로그인 완료 후 홈 화면 확인',
-            body: '왼쪽에 메뉴, 중앙에 작업 영역이 보이면 정상입니다. “Workspace” 또는 “Collections” 메뉴가 보이는지 확인해요.',
-            figure: fig('images/06-home-after-login.png', '로그인 후 홈 화면(좌측 메뉴 + 중앙 작업 영역)'),
+            body: '로그인이 완료되면 Postman 홈 화면으로 이동해요. 왼쪽 메뉴와 가운데 작업 공간이 보이면 정상이에요.',
+            figure: fig('images/08-home-after-login.png', '로그인 후 홈 화면'),
           },
         ],
       },
       {
         kind: 'tip-box',
-        html: '<strong>Tip.</strong> 로그인 후 동기화가 진행되면서 잠시 느릴 수 있어요. 10~20초 정도 기다렸다가 메뉴가 나타나는지 확인해요.',
+        html: 'Google 계정이 여러 개라면 로그인 창에서<br>사용할 계정을 정확히 선택하세요.<br>나중에 계정을 바꾸려면 로그아웃 후 다시 로그인해야 해요.',
       },
     ],
   },
@@ -122,30 +121,25 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '문제 해결',
-        title: '자주 막히는 경우',
+        label: '확인',
+        title: '이렇게 보이면 완료예요',
+        lead: '로그인 후 아래와 비슷한 화면이 보이면 1-2는 끝난 거예요.',
       },
       {
-        kind: 'cards-2',
-        cards: [
-          { title: '인증 메일이 안 와요', body: '스팸함 확인 → 재전송 → 회사 메일 보안 정책(외부 인증 메일 차단) 여부 확인.' },
-          { title: '회사 계정으로 Google 로그인 안 돼요', body: '브라우저에 로그인된 계정이 여러 개면 헷갈릴 수 있어요. 회사 계정을 명확히 선택하세요.' },
-          { title: '로그인은 됐는데 빈 화면이에요', body: '앱 재시작 후 다시 확인. 그래도 이상하면 업데이트 후 재실행을 권장합니다.' },
-          { title: '회사에서 외부 서비스 가입이 금지예요', body: '팀 정책에 따라 “공용 계정”을 쓰거나, IT에서 허용한 SSO 방식으로 진행해야 할 수 있어요.' },
-        ],
-      },
-      {
-        kind: 'section-header',
-        label: '다음 준비',
-        title: '로그인 후 딱 이것만 확인하세요',
+        kind: 'figure',
+        figure: fig('images/09-home-final-check.png', '로그인 후 Postman 홈 화면 전체 — 왼쪽 메뉴 + 가운데 작업 공간'),
       },
       {
         kind: 'check-done',
         items: [
-          '좌측에 <strong>Collections</strong> 또는 비슷한 메뉴가 보인다',
-          '우측 상단(또는 프로필)에서 <strong>로그인 상태</strong>를 확인할 수 있다',
-          '홈에서 “Create Workspace” 또는 “New” 버튼을 찾을 수 있다',
+          '왼쪽에 메뉴(Collections, Environments 등)가 보인다',
+          '오른쪽 상단 또는 프로필 영역에 내 계정 이름·아이콘이 보인다',
+          '가운데 작업 공간이 열려 있다 (비어 있어도 괜찮아요)',
         ],
+      },
+      {
+        kind: 'tip-box',
+        html: '로그인 직후 동기화가 진행되면서 잠깐 느릴 수 있어요. 10~20초 정도 기다리면 메뉴가 나타나요.',
       },
     ],
   },
@@ -158,22 +152,22 @@ export const pages = buildPartPages({
     partLabel: 'PART 02 · 계정 연결하기',
     titleLines: ['회원가입 &', '로그인'],
     leadLines: [
-      'Postman에서 계정을 만들고 로그인해서,',
-      'Workspace와 요청을 안전하게 저장할 준비를 해요.',
+      'Postman을 열고 계정을 연결해요',
+      'postman.com에 접속해서 계정을 만들거나 로그인하고, 첫 화면까지 확인해요',
     ],
   },
   toc: {
     goals: [
-      'Postman에서 <strong>계정을 만들거나</strong> 기존 계정으로 로그인했어요.',
-      '로그인 후 <strong>첫 화면(홈/워크스페이스)</strong>이 정상적으로 보여요.',
-      '팀에서 공유하는 Collection/Environment를 <strong>가져올 준비</strong>가 됐어요.',
+      'postman.com에 접속해서 Postman 화면을 열 수 있어요.',
+      '이메일 또는 Google 계정으로 로그인할 수 있어요.',
+      '로그인 후 홈 화면이 정상적으로 보이는지 확인했어요.',
     ],
-    quote: '웹 Postman 실행·앱 설치는 1-3에서 이어서 진행합니다. 지금은 계정·로그인만 마치면 됩니다.',
+    quote: '이 파트 흐름: 웹으로 열기 → 회원가입 → 로그인 → 홈 화면 확인',
     flowCards: [
-      { title: '로그인 필요성', body: '저장·동기화·팀 공유를 위해 계정을 연결해요.' },
-      { title: 'STEP 1 · 가입', body: '이메일로 Sign up → 인증 메일 확인.' },
-      { title: 'STEP 2 · 로그인', body: 'Email 또는 Google로 Sign in.' },
-      { title: '확인', body: '홈 화면·메뉴가 보이면 성공!' },
+      { title: '웹으로 열기', body: 'postman.com 접속 · Sign Up/Sign In 확인' },
+      { title: '회원가입', body: 'Sign Up · 이메일 인증' },
+      { title: '로그인', body: '이메일 또는 Google 로그인' },
+      { title: '홈 화면 확인', body: '왼쪽 메뉴 · 가운데 작업 공간 확인' },
     ],
   },
   body,
@@ -181,7 +175,7 @@ export const pages = buildPartPages({
     roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-2',
     roadmap: VOL01_ROADMAP,
-    ctaTitle: '계정 연결 완료! 다음은 Postman 실행',
-    ctaSubtitle: '1-3에서 웹 또는 Windows 앱으로 Postman을 실행해 볼 거예요.',
+    ctaTitle: '계정 연결 완료! 다음은 화면 익히기',
+    ctaSubtitle: '1-3에서 Postman 화면 각 부분이 뭔지 살펴볼 거예요.',
   },
 })

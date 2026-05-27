@@ -19,7 +19,9 @@ defineProps<{
         <li v-for="(item, i) in block.items" :key="i" v-html="item" />
       </ul>
 
-      <div v-else-if="block.kind === 'quote'" class="quote-bubble">{{ block.text }}</div>
+      <div v-else-if="block.kind === 'quote'" class="quote-bubble" v-html="block.text" />
+
+      <p v-else-if="block.kind === 'text'" class="text-block" v-html="block.text" />
 
       <div v-else-if="block.kind === 'cards-2'" class="card-grid-2">
         <div v-for="(card, i) in block.cards" :key="i" class="card">
@@ -94,8 +96,8 @@ defineProps<{
         <div v-for="(item, i) in block.items" :key="i" class="pain-row">
           <span class="pain-num">{{ i + 1 }}</span>
           <div>
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.body }}</p>
+            <h4 v-html="item.title" />
+            <p v-html="item.body" />
           </div>
         </div>
       </template>
