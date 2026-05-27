@@ -15,6 +15,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { spawn } from 'node:child_process'
 import { buildPdfFilename } from '../_shared/guide/pdf-title.mjs'
+import { extractSeriesOutlineForPublish } from '../_shared/guide/extract-series-outline.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const repoRoot = path.resolve(__dirname, '..')
@@ -55,7 +56,8 @@ for (const partId of partIds) {
 
 const srcSeriesMd = path.join(postmanRoot, 'SERIES.md')
 const dstSeriesMd = path.join(outPostman, 'SERIES.md')
-await fs.copyFile(srcSeriesMd, dstSeriesMd)
+const seriesFull = await fs.readFile(srcSeriesMd, 'utf8')
+await fs.writeFile(dstSeriesMd, extractSeriesOutlineForPublish(seriesFull), 'utf8')
 
 if (includeJson) {
   await copyJsonRecursive(publishAssetsDir, outVol)

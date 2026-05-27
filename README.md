@@ -51,7 +51,7 @@ node export-guide-pdf.mjs postman/vol-01-start/1-1-postman-intro
 - 산출물 생성: `scripts/build-postman-publish.mjs`
 - 미러 대상 파트: `series/postman/vol-01-start/publish-parts.json` (없으면 `parts/` 전체)
 - B 레포 구조:
-  - `postman/SERIES.md`
+  - `postman/SERIES.md` — 소스 `SERIES.md`의 **「시리즈 구성」 섹션만** (제작 가이드 제외)
   - `postman/vol-01-start/*.pdf`
   - (옵션) `postman/vol-01-start/**/*.json`
 
