@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import path from 'node:path'
 
 export default defineConfig({
+  /** GitHub Pages(project): https://meowdule.github.io/collection/ */
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [vue()],
   server: {
     port: 5273,

@@ -149,9 +149,18 @@ await build({
 const { server, port } = await startStaticServer()
 const previewUrl = `http://127.0.0.1:${port}/#/pdf/${partPath}`
 
+/** GitHub Actions 등 Linux CI에서는 Chromium sandbox 비활성화 필요 */
+function puppeteerLaunchArgs() {
+  const args = ['--font-render-hinting=none', '--disable-lcd-text']
+  if (process.env.CI) {
+    args.push('--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage')
+  }
+  return args
+}
+
 const browser = await puppeteer.launch({
   headless: true,
-  args: ['--font-render-hinting=none', '--disable-lcd-text'],
+  args: puppeteerLaunchArgs(),
 })
 
 try {

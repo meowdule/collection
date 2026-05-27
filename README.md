@@ -28,6 +28,12 @@ npm run dev
 
 http://localhost:5273
 
+## GitHub Pages (A 레포 뷰어)
+
+- URL: https://meowdule.github.io/collection/
+- 워크플로: `.github/workflows/deploy-pages.yml`
+- 레포 Settings → Pages → Source: **GitHub Actions** 선택 필요
+
 ## PDF 출력
 
 ```bash
@@ -55,6 +61,8 @@ node export-guide-pdf.mjs postman/vol-01-start/1-1-postman-intro
 
 미러 모드이므로 삭제도 반영됩니다.
 즉, A에서 산출물 목록에서 빠진 파일은 B에서도 자동 삭제됩니다.
+
+CI에서 PDF export 실패 시: Puppeteer는 `CI=true`일 때 `--no-sandbox` 등을 사용합니다 (`scripts/export-guide-pdf.mjs`).
 
 ## 구현 현황 (Vol.1)
 
