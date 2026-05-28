@@ -54,7 +54,7 @@ jobs:
       - name: Checkout destination repo (B)
         uses: actions/checkout@v4
         with:
-          repository: TBELLai/collection
+          repository: TBELL-ref/collection
           token: ${{ secrets.TBELLAI_COLLECTION_TOKEN }}
           path: b-repo
 
