@@ -3,6 +3,7 @@ import type { GuideMeta } from '@/types/guide'
 
 defineProps<{
   meta?: GuideMeta
+  seriesSlug?: string
   pageIndex?: number
   totalPages?: number
   showHeader?: boolean
@@ -12,7 +13,11 @@ defineProps<{
 </script>
 
 <template>
-  <article class="guide-page" :class="{ 'guide-page--cover': cover }">
+  <article
+    class="guide-page"
+    :class="{ 'guide-page--cover': cover }"
+    :data-series="seriesSlug ?? 'default'"
+  >
     <header v-if="showHeader && meta && !cover" class="page-strip">
       <span>{{ meta.series }} · {{ meta.vol }}</span>
       <strong>{{ meta.part }}</strong>

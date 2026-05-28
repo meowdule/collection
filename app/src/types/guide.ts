@@ -4,9 +4,19 @@ export interface GuideMeta {
   part: string
   /** PDF 뷰어/파일 제목. 없으면 "vol.1-1 Postman이 뭔가요" 형식으로 자동 생성 */
   pdfTitle?: string
+  /** 시리즈별 Accent Theme 키 (브랜드 공통 + 시리즈 포인트 컬러) */
+  themeKey?: string
+  /** 레이아웃 메타 규칙 */
+  layout?: {
+    /** 챕터 시작으로 취급할 페이지 번호(1-base) */
+    chapterStartPages?: number[]
+  }
 }
 
 export interface CardItem {
+  /** Lucide 아이콘 키 — `app/src/lib/guide-lucide-icons.ts` 참고 */
+  lucide?: string
+  /** @deprecated lucide 사용 권장 */
   icon?: string
   iconBg?: string
   iconColor?: string
@@ -19,6 +29,7 @@ export interface PanelBlock {
   body?: string
   items?: string[]
   variant?: 'app' | 'post'
+  lucide?: string
 }
 
 export interface FlowStep {
@@ -65,7 +76,8 @@ export type ContentBlock =
   | { kind: 'text'; text: string }
   | { kind: 'cards-2'; cards: CardItem[] }
   | { kind: 'cards-3'; cards: CardItem[] }
-  | { kind: 'key-box'; headline: string; body: string }
+  | { kind: 'key-box'; headline: string; body: string; href?: string }
+  | { kind: 'link-list'; links: { label: string; url: string; hint?: string }[] }
   | { kind: 'code-block'; caption: string; code: string }
   | { kind: 'split-2'; left: PanelBlock; right: PanelBlock; footnote?: string }
   | { kind: 'flow'; steps: FlowStep[] }
@@ -76,7 +88,7 @@ export type ContentBlock =
   | { kind: 'tip-box'; html: string }
   | { kind: 'warn-box'; html: string }
   | { kind: 'check-done'; items: string[] }
-  | { kind: 'steps'; steps: GuideStep[] }
+  | { kind: 'steps'; steps: GuideStep[]; startAt?: number }
   | { kind: 'figure'; figure: FigureSlot }
   | { kind: 'os-tabs'; tabs: { label: string; active?: boolean }[] }
 

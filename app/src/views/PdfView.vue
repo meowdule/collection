@@ -19,5 +19,10 @@ const entry = computed(() => resolveGuidePart(guidePath.value))
     <h1>PDF용 문서를 찾을 수 없어요</h1>
     <p>{{ guidePath }}</p>
   </div>
-  <PdfDocument v-else :meta="entry.meta" :pages="entry.pages" />
+  <PdfDocument
+    v-else
+    :series-slug="entry.meta.themeKey ?? 'default'"
+    :meta="entry.meta"
+    :pages="entry.pages"
+  />
 </template>

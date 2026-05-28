@@ -1,4 +1,4 @@
-import type { ContentPageData } from '@/types/guide'
+import type { ContentPageData, FigureSlot } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import meta from './meta.json'
@@ -6,66 +6,26 @@ import meta from './meta.json'
 export const partId = '1-1-postman-intro'
 export { meta }
 
+const partImages = import.meta.glob<string>('./images/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+function fig(file: string, caption: string): FigureSlot {
+  const key = `./images/${file}`
+  const imageSrc = partImages[key]
+  if (!imageSrc) {
+    return {
+      placeholderCode: `images/${file}`,
+      placeholderLabel: `이미지 없음: ${file}`,
+      caption,
+    }
+  }
+  return { imageSrc, caption }
+}
+
 const body: ContentPageData[] = [
-  {
-    type: 'content',
-    blocks: [
-      {
-        kind: 'section-header',
-        label: '자료집 소개',
-        title: '이 자료집은 어떻게 만들어졌나요',
-        lead: `Postman을 처음 접하는 분들이 “어디서부터 시작해야 하지?”라는 막막함 없이 바로 실습할 수 있도록 만든 <strong>따라하기형 자료집</strong>이에요.<br>
-개념 설명보다 실제로 손을 움직이는 것에 초점을 맞췄어요.`,
-      },
-      {
-        kind: 'quote',
-        text: 'Postman 없이 테스트하면 결국 개발자한테 물어보게 돼요. 이 자료집은 그 과정을 줄여주는 것에서 시작해요.',
-      },
-      {
-        kind: 'section-header',
-        label: '전체 흐름',
-        title: 'Vol.1~4 전체 흐름',
-        lead: `Vol.1은 Postman을 처음 여는 것부터 시작해요.<br>
-아직 설치도 안 한 상태라도 괜찮아요. Vol.2부터 실제 요청 실습이 시작되고, Vol.3·4로 갈수록 <strong>반복 작업 자동화</strong> 방향으로 이어져요.`,
-      },
-      {
-        kind: 'cards-2',
-        cards: [
-          {
-            title: 'Vol.1 · 설치 및 시작하기',
-            body: 'Postman을 열고, 화면을 익히고, 내 Workspace를 만들 수 있어요.',
-          },
-          {
-            title: 'Vol.2 · 첫 번째 요청 보내기',
-            body: 'URL을 입력하고 Send를 눌러 응답을 직접 확인할 수 있어요. GET·POST 요청을 저장하고 다시 실행할 수 있어요.',
-          },
-          {
-            title: 'Vol.3 · 변수 & 로그인 자동화',
-            body: '로그인 토큰을 매번 복사하지 않고 자동으로 저장·적용할 수 있어요.',
-          },
-          {
-            title: 'Vol.4 · 연속 실행',
-            body: '여러 요청을 한 번에 순서대로 실행하고 결과를 한눈에 확인할 수 있어요.',
-          },
-        ],
-      },
-      {
-        kind: 'section-header',
-        label: '완료 후',
-        title: '이 자료집을 다 마치면 이런 게 가능해요',
-        lead: '지금은 생소하게 느껴지더라도, Vol.1~4를 순서대로 따라하고 나면 아래 작업들을 혼자 할 수 있게 돼요.',
-      },
-      {
-        kind: 'check-done',
-        items: [
-          '개발자에게 묻지 않고 API 응답을 스스로 읽고 판단할 수 있어요',
-          '버그가 생기면 화면 문제인지 서버 문제인지 Postman으로 직접 확인할 수 있어요',
-          '요청·응답을 그대로 공유해서 재현이 쉬운 버그 리포트를 만들 수 있어요',
-          '반복 테스트를 자동화해서 매번 손으로 하던 작업을 줄일 수 있어요',
-        ],
-      },
-    ],
-  },
   {
     type: 'content',
     blocks: [
@@ -84,7 +44,7 @@ Postman은 이 대화를 <strong>앱 화면 없이</strong> 직접 해볼 수 �
       {
         kind: 'code-block',
         caption:
-          '로그인 요청을 보내면 서버가 이런 형태로 답해요. Vol.3에서 여기서 token을 꺼내 자동 저장하는 법을 다뤄요.',
+          '로그인 요청을 보내면 서버가 이런 형태로 답해요. Vol.2(자동화)에서 token을 꺼내 자동 저장하는 법을 다뤄요.',
         code: `{
   "status": "success",
   "user": {
@@ -173,7 +133,7 @@ Postman은 이 대화를 <strong>앱 화면 없이</strong> 직접 해볼 수 �
       {
         kind: 'text',
         text: `브라우저에서 바로 쓸 수도 있고 PC에 설치해서 쓸 수도 있어요.<br>
-어느 쪽이든 실습은 동일하게 따라할 수 있고, 여는 방법은 1-2에서 같이 해요.<br>
+어느 쪽이든 실습은 동일하게 따라할 수 있어요. 여는 방법은 이 파트 마지막 <strong>앱 설치</strong>에서 다뤄요.<br>
 API, Request, Response 같은 단어가 처음 등장하는 파트에서 짧게 설명하고 넘어가요. 미리 외우려 하지 않아도 돼요.`,
       },
       {
@@ -185,30 +145,125 @@ API, Request, Response 같은 단어가 처음 등장하는 파트에서 짧게 
       },
     ],
   },
+  {
+    type: 'content',
+    blocks: [
+      {
+        kind: 'section-header',
+        label: '설치',
+        title: 'Postman 여는 방법 — 두 가지',
+        lead: '설치 없이 브라우저에서 바로 열거나, PC에 앱을 설치할 수 있어요. 어느 쪽이든 이후 실습은 동일하게 따라할 수 있어요.',
+      },
+      {
+        kind: 'split-2',
+        left: {
+          title: '웹 버전 (설치 없음)',
+          lucide: 'globe',
+          body: '브라우저에서 바로 시작할 수 있어요.',
+          items: [
+            '<a href="https://www.postman.com/" target="_blank" rel="noopener noreferrer">postman.com</a> 접속',
+            '우측 상단 <strong>Sign In</strong> 클릭',
+            '다음 파트(1-2)에서 회원가입·로그인',
+          ],
+          variant: 'post',
+        },
+        right: {
+          title: '데스크톱 앱 설치',
+          lucide: 'monitor',
+          body: '아래에서 다운로드·설치를 따라해요.',
+          items: [
+            '<a href="https://www.postman.com/downloads/" target="_blank" rel="noopener noreferrer">postman.com/downloads</a>',
+            'OS에 맞는 파일 받기 · 설치',
+          ],
+          variant: 'app',
+        },
+      },
+      {
+        kind: 'figure',
+        figure: fig('00-start-postman.png', 'postman.com 홈 — 우측 상단 Sign In / Sign Up'),
+      },
+      {
+        kind: 'tip-box',
+        html: '어느 쪽을 선택해도 괜찮아요. 팀에서 정한 방식이 있으면 그걸 따라가세요.',
+      },
+    ],
+  },
+  {
+    type: 'content',
+    blocks: [
+      {
+        kind: 'section-header',
+        label: '앱 설치',
+        title: 'PC 앱 다운로드·설치',
+        lead: '아래 순서대로 설치 파일을 받고 실행해요.',
+      },
+      {
+        kind: 'text',
+        text: '<strong>다운로드:</strong> <a href="https://www.postman.com/downloads/" target="_blank" rel="noopener noreferrer">postman.com/downloads</a> · 주소창에 직접 입력',
+      },
+      {
+        kind: 'steps',
+        startAt: 1,
+        steps: [
+          {
+            title: '다운로드 & 설치',
+            body: '<strong>Download</strong>를 눌러 설치 파일을 받고, 실행해 설치를 마쳐요. Windows는 보통 <strong>.exe</strong> 파일이에요.',
+            figure: fig('01-downloads-page.png', '다운로드 페이지 — Download 버튼'),
+          },
+          {
+            title: '첫 화면 확인',
+            body: '설치가 끝나면 Postman이 바로 열리고 아래처럼 첫 화면(로그인·가입 안내)이 보여요.',
+            figure: fig('03-app-launched.png', '설치 직후 Postman 첫 화면'),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    type: 'content',
+    blocks: [
+      {
+        kind: 'section-header',
+        label: '확인',
+        title: '설치 마무리',
+        lead: '아래를 확인한 뒤 다음 자료집(1-2)으로 넘어가세요.',
+      },
+      {
+        kind: 'tip-box',
+        html: '<strong>계정이 필요해요.</strong><br>이 화면까지 오면 설치는 끝난 거예요.<br>회원가입·로그인은 <strong>다음 자료집(1-2 Postman 시작하기)</strong>에서 이어서 진행해 주세요.',
+      },
+      {
+        kind: 'check-done',
+        items: [
+          '웹만 쓸 거면 이 장은 <strong>건너뛰어도</strong> 됩니다 (1-2로 바로 이동)',
+          'Postman 앱이 설치되고 첫 화면이 열렸어요',
+          '다음 자료집 1-2에서 회원가입·로그인을 진행할 준비가 됐어요',
+        ],
+      },
+    ],
+  },
 ]
 
 export const pages = buildPartPages({
   cover: {
-    badges: ['Postman 사용법 자료집', 'Vol.1 설치 및 시작하기'],
+    badges: ['Postman 사용법 자료집', 'Vol.1 Postman 입문'],
     warmBadge: '1-1',
-    partLabel: 'PART 01 · 시리즈 소개',
+    partLabel: 'PART 01 · Postman 소개 & 설치',
     titleLines: ['Postman이 뭔가요?'],
     leadLines: [
-      'Vol.1~4로 Postman을 처음부터 실무까지',
-      '설치부터 자동화까지, 단계별로 따라하면서 익혀요',
+      'Postman을 처음 쓰는 분을 위한 입문 자료집',
+      '개요를 파악하고 앱을 직접 설치해요',
     ],
   },
   toc: {
     goals: [
-      '이 자료집이 <strong>어떤 흐름으로 구성</strong>되어 있는지 알아요.',
       'Postman이 <strong>어떤 도구인지</strong>, 어떤 상황에서 쓰는지 말할 수 있어요.',
-      'Vol.1부터 <strong>어떻게 따라하면 되는지</strong> 감을 잡았어요.',
+      'Postman 앱을 설치하거나 웹에서 열 수 있어요.',
     ],
-    quote: '이 파트 흐름: 자료집 구성 소개 → Postman 개요 → 활용법 안내',
+    quote: '이 파트 흐름: Postman 개요 → 설치 방법 선택 → 앱 설치',
     flowCards: [
-      { title: '자료집 구성 소개', body: '만든 이유 · Vol.1~4 · 완료 후 가능한 일' },
       { title: 'Postman 개요', body: '한 줄 정의 · API 비유 · 실무 상황' },
-      { title: '활용법 안내', body: '따라하기 · 웹/앱 · 용어 · 막힐 때' },
+      { title: '앱 설치', body: '웹 버전 · 데스크톱 설치 · 실행 확인' },
     ],
   },
   body,
@@ -217,6 +272,6 @@ export const pages = buildPartPages({
     currentPartNum: '1-1',
     roadmap: VOL01_ROADMAP,
     ctaTitle: 'Vol.1부터 시작해요',
-    ctaSubtitle: '1-2에서 Postman을 열고 계정을 연결하는 것부터 같이 해볼게요.',
+    ctaSubtitle: '1-2에서 회원가입·로그인과 화면 구성을 같이 해볼게요.',
   },
 })

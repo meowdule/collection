@@ -1,6 +1,10 @@
 {
   "series": "Postman 사용법 자료집",
-  "vol": "Vol.1 설치 및 시작하기",
-  "part": "1-3 웹 실행 및 앱 설치",
-  "pdfTitle": "vol.1-3 웹 실행 및 앱 설치"
+  "vol": "Vol.1 Postman 입문",
+  "part": "1-3 Workspace 만들기",
+  "pdfTitle": "vol.1-3 Workspace 만들기",
+  "themeKey": "postman",
+  "layout": {
+    "chapterStartPages": [2]
+  }
 }

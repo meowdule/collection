@@ -9,9 +9,9 @@ export interface VolRoadmapConfig {
 /** Postman 시리즈 — Vol.1 */
 export const VOL01_ROADMAP: RoadmapEntry[] = [
   { num: '1-1', label: 'Postman이 뭔가요' },
-  { num: '1-2', label: '회원가입 & 로그인' },
-  { num: '1-3', label: '화면 구성 살펴보기' },
-  { num: '1-4', label: 'Workspace 만들기' },
+  { num: '1-2', label: 'Postman 시작하기' },
+  { num: '1-3', label: 'Workspace 만들기' },
+  { num: '1-4', label: '실습 파일 사용법' },
 ]
 
 export const VOL01_ROADMAP_SECTION_LABEL = 'Vol.1 로드맵'

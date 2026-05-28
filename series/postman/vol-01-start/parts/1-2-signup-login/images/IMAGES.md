@@ -1,10 +1,13 @@
-# 1-2 회원가입 & 로그인 — 필요 스크린샷
+# 1-2 Postman 시작하기 — 스크린샷
 
-| 파일명 | 촬영 내용 |
-|--------|-----------|
-| `01-start-signup.png` | Postman 첫 화면의 Sign up/Create account 버튼 |
-| `02-signup-form.png` | 회원가입 폼(Email/Password) |
-| `03-verify-email.png` | 인증 메일(Verify 버튼) |
-| `04-start-signin.png` | Sign in 진입 버튼 위치 |
-| `05-signin-methods.png` | 로그인 방식 선택(Email/Google 등) |
-| `06-home-after-login.png` | 로그인 후 홈 화면(좌측 메뉴 + 작업영역) |
+| 파일 | 용도 | 단계 |
+| --- | --- | --- |
+| `01-start-signin.png` | Sign Up 정보 입력 | 1 |
+| `03-verify-email-1.png` | 인증 메일 | 2 |
+| `03-verify-email-2.png` | 인증 번호 입력 | 3 |
+| `04-Initial setup-1.png` | Initial setup 1 | 4 |
+| `04-Initial setup-2.png` | Initial setup 2 | 5 |
+| `05-home-after-login.png` | 워크스페이스 화면 | — |
+
+미사용(1-1 접속·설치로 이동): `00-start-postman.png`  
+미사용: `04-Initial pending.png`, `06-start-signin.png`

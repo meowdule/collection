@@ -61,49 +61,31 @@ Postman을 처음 쓰는 사람이:
 
 ## 시리즈 구성
 
-### 📘 Vol.1 — 설치 및 시작하기
+이 README는 전체 시리즈 중 메인 라인 첫 번째 시리즈(Vol.1)에 해당한다.
+전체 로드맵은 SERIES_ROADMAP.md 참고.
+
+### 변경 배경
+- 기존 단일 Vol.1~4 구성을 메인 라인(Vol.1~4)과 심화 사이드(Vol.S1~S5)로 전면 재편
+- 이 README가 커버하는 범위: Vol.1(입문) — 설치부터 변수·환경 관리까지
+- 로그인 자동화 · Runner는 Vol.2(자동화)로 분리
+
+### 📘 Vol.1 — Postman 입문
 
 | 파트 | 제목 | 주요 흐름 |
-| --- | --- | --- |
-| 1-1 | Postman이 뭔가요 | 왜 쓰는지 · API 30초 이해 · 앱 vs Postman · 실무 예시 4가지 |
-| 1-2 | 회원가입 & 로그인 | 웹으로 열기 · 회원가입 · 로그인 · 홈 화면 확인 |
-| 1-3 | 화면 구성 살펴보기 | 각 영역 역할 · Collections·Request 위치 · 앱 설치 유도 |
-| 1-4 | Workspace 만들기 | Workspace 개념 · 만들기 · 팀 공유 설정 |
-
-### 📗 Vol.2 — 첫 번째 요청 보내기
-
-| 파트 | 제목 | 주요 흐름 |
-| --- | --- | --- |
-| 2-1 | Collection 만들기 | Collection 개념 · 새 Collection 생성 · 이름·설명 설정 |
-| 2-2 | 기본 GET 요청 보내기 | URL 입력 · Send · 응답 확인 (상태 코드·Body) |
-| 2-3 | Query Params 포함 요청 보내기 | Params 탭 · 키-값 입력 · 결과 비교 |
-| 2-4 | Body 데이터 포함 POST 요청 보내기 | Body 탭 · JSON 입력 · 응답 확인 |
-| 2-5 | 요청 저장하고 다시 실행하기 | Save · Collection에 담기 · 재실행 |
+|---|---|---|
+| 1-1 | Postman이 뭔가요 | 개요 · 앱 설치 |
+| 1-2 | Postman 시작하기 | 회원가입 · 로그인 · 화면 구성 |
+| 1-3 | Workspace 만들기 | Workspace 개념 · 생성 · 기본 세팅 |
+| 1-4 | 실습 파일 사용법 | Collection.json 소개 · Import · Mock Server 확인 ★Vol.S1 유입 포인트 |
+| 1-5 | Collection 만들기 | Collection 개념 · 생성 · 이름 설정 |
+| 1-6 | 기본 GET 요청 보내기 | URL 입력 · Send · 응답 확인 · 저장 |
+| 1-7 | Query Params 포함 요청 보내기 | Params 탭 · 키-값 입력 · 결과 비교 · 저장 |
+| 1-8 | Body 데이터 포함 POST 요청 보내기 | Body 탭 · JSON 입력 · 응답 확인 · 저장 |
+| 1-9 | Environment 만들기 · 변수 등록하기 | Environment 개념 · 생성 · Key-Value 입력 · 저장 |
+| 1-10 | 요청에서 변수 사용하기 | {{변수명}} 문법 · URL에 적용 · 확인 |
 
 > ※ Response(JSON), 상태 코드, 실패 응답 확인은  
-> **각 요청 실습 내부에서 함께** 설명
-
-### 📙 Vol.3 — 변수 & 로그인 자동화
-
-| 파트 | 제목 | 주요 흐름 |
-| --- | --- | --- |
-| 3-1 | Environment 만들기 | Environment 개념 · 새 Environment 생성 |
-| 3-2 | 변수 등록하기 | 변수 개념 · Key-Value 입력 · 저장 |
-| 3-3 | 요청에서 변수 사용하기 | {{변수명}} 문법 · URL에 적용 · 확인 |
-| 3-4 | 로그인 요청 보내기 | 로그인 API · Body 입력 · 응답 확인 |
-| 3-5 | 로그인 응답에서 토큰 꺼내기 | Response JSON 읽기 · 토큰 위치 확인 |
-| 3-6 | 토큰을 Environment 변수에 자동 저장하기 | Tests 탭 · pm.environment.set · 저장 확인 |
-| 3-7 | 다른 요청에 토큰 자동 적용하기 | Authorization 탭 · Bearer Token · 변수 연결 |
-
-### 📕 Vol.4 — Collection Runner로 연속 실행
-
-| 파트 | 제목 | 주요 흐름 |
-| --- | --- | --- |
-| 4-1 | 여러 요청 저장하기 | 요청 순서 정리 · Collection 구성 확인 |
-| 4-2 | Collection Runner 실행하기 | Runner 열기 · 실행 · 결과 화면 확인 |
-| 4-3 | 로그인 → 다음 요청 자동 실행 흐름 만들기 | 토큰 저장 확인 · 순서 설정 · 연속 실행 |
-| 4-4 | CSV / JSON 데이터로 반복 실행하기 | 데이터 파일 준비 · Runner에 업로드 · 반복 실행 |
-| 4-5 | 실행 결과 확인하기 | 성공·실패 확인 · 결과보내기 |
+>   각 요청 실습 내부에서 함께 설명
 
 ---
 
@@ -149,8 +131,15 @@ Part별 PDF 제목·파일명 형식:
 
 ```text
 vol.1-1 Postman이 뭔가요.pdf
-vol.1-2 회원가입 & 로그인.pdf
-vol.2-1 Collection 만들기.pdf
+vol.1-2 Postman 시작하기.pdf
+vol.1-3 Workspace 만들기.pdf
+vol.1-4 실습 파일 사용법.pdf
+vol.1-5 Collection 만들기.pdf
+vol.1-6 기본 GET 요청 보내기.pdf
+vol.1-7 Query Params 포함 요청 보내기.pdf
+vol.1-8 Body 데이터 포함 POST 요청 보내기.pdf
+vol.1-9 Environment 만들기 · 변수 등록하기.pdf
+vol.1-10 요청에서 변수 사용하기.pdf
 ```
 
 `meta.json`의 `part` 필드(`1-1 Postman이 뭔가요`)에서 자동 생성.  
@@ -161,7 +150,6 @@ vol.2-1 Collection 만들기.pdf
 ## 시리즈 완료 시 사용자 수준
 
 - Postman 설치·실행 및 Workspace 사용
-- Collection에 요청 만들기 · GET / Params / POST 보내기
-- Environment·변수로 URL·토큰 관리
-- 로그인 토큰 자동 저장·다른 요청에 적용
-- Collection Runner로 연속 실행 · CSV/JSON 반복 · 결과 확인
+- Collection에 요청 만들기 · GET / Params / POST 보내기 (저장 포함)
+- Environment · 변수로 URL 관리
+- 다음 단계: 로그인 자동화 · Runner 실행은 Vol.2(자동화)에서 이어서 진행

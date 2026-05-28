@@ -149,14 +149,15 @@ guide_repo_v0.2에서 Postman 자료집 파트를 만들어줘.
 | `goals` | 체크리스트 (p2는 템플릿 사용) |
 | `quote` | 인용 박스 |
 | `text` | 일반 본문 한 줄·단락 (`text`) |
-| `cards-2` / `cards-3` | 카드 그리드 (`body`는 HTML 허용, `v-html`) |
-| `key-box` | 핵심 한 줄 |
+| `cards-2` / `cards-3` | 카드 그리드. 아이콘은 `lucide` 키 (`guide-lucide-icons.ts`) |
+| `key-box` | 핵심 한 줄 (`href` 있으면 클릭 가능 링크) |
+| `link-list` | URL 목록 (`label`, `url`, 선택 `hint`) — PDF·웹 모두 링크 동작 |
 | `code-block` | 캡션 + JSON·코드 예시 (`caption`, `code`) |
 | `split-2` | 2단 비교 |
 | `flow` | 3단 흐름 |
 | `pain-rows` | 불편함 목록 |
 | `term-grid` | 용어 정리 |
-| `steps` | 따라하기 단계 (+ 스크린샷 슬롯) |
+| `steps` | 따라하기 단계 (+ 스크린샷). `startAt`으로 페이지 넘어가도 번호 이어 붙이기 |
 | `figure` | 단독 이미지 슬롯 |
 | `tip-box` / `warn-box` | Tip·주의 (html) |
 | `check-done` | 완료 체크리스트 (`items` HTML 허용, `v-html`) |

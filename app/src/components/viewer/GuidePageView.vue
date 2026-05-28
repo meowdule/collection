@@ -8,6 +8,7 @@ import BlockRenderer from '@/components/blocks/BlockRenderer.vue'
 const props = defineProps<{
   page: GuidePage
   meta: GuideMeta
+  seriesSlug?: string
   pageIndex: number
   totalPages: number
   showHeader?: boolean
@@ -20,6 +21,7 @@ const isCover = computed(() => props.page.type === 'cover')
 <template>
   <GuidePageShell
     :meta="meta"
+    :series-slug="seriesSlug"
     :page-index="pageIndex"
     :total-pages="totalPages"
     :show-header="showHeader ?? true"
@@ -27,6 +29,13 @@ const isCover = computed(() => props.page.type === 'cover')
     :cover="isCover"
   >
     <GuideCover v-if="page.type === 'cover'" :page="page" />
-    <BlockRenderer v-else :blocks="page.blocks" />
+    <BlockRenderer
+      v-else
+      :blocks="page.blocks"
+      :vol-label="meta.vol"
+      :part-label="meta.part"
+      :page-index="pageIndex"
+      :chapter-start-pages="meta.layout?.chapterStartPages"
+    />
   </GuidePageShell>
 </template>

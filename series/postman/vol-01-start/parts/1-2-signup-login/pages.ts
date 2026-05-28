@@ -6,12 +6,23 @@ import meta from './meta.json'
 export const partId = '1-2-signup-login'
 export { meta }
 
-function fig(code: string, caption: string): FigureSlot {
-  return {
-    placeholderCode: code,
-    placeholderLabel: '스크린샷 첨부 요청',
-    caption,
+const partImages = import.meta.glob<string>('./images/*', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+})
+
+function fig(file: string, caption: string): FigureSlot {
+  const key = `./images/${file}`
+  const imageSrc = partImages[key]
+  if (!imageSrc) {
+    return {
+      placeholderCode: `images/${file}`,
+      placeholderLabel: `이미지 없음: ${file}`,
+      caption,
+    }
   }
+  return { imageSrc, caption }
 }
 
 const body: ContentPageData[] = [
@@ -20,29 +31,27 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '웹으로 열기',
-        title: 'postman.com에 접속해요',
-        lead: '설치 없이 브라우저에서 바로 시작할 수 있어요. Chrome, Edge 등 최신 브라우저를 사용하세요.',
-      },
-      {
-        kind: 'key-box',
-        headline: 'https://www.postman.com/',
-        body: '검색창에서 찾으면 광고 링크가 섞일 수 있어요. 위 주소를 주소창에 직접 붙여 넣으세요.',
+        label: '회원가입',
+        title: 'Sign Up으로 계정을 만들어요',
+        lead: '1-1에서 Postman을 연 상태에서 진행해요. 처음이면 <strong>Sign Up</strong>, 계정이 있으면 <strong>Sign In</strong>을 선택해요.',
       },
       {
         kind: 'steps',
         steps: [
           {
-            title: '브라우저 주소창에 postman.com 입력',
-            body: '브라우저 주소창에 <strong>postman.com</strong>을 입력하고 Enter를 눌러요.',
-            figure: fig('images/01-postman-home.png', 'Postman 홈 화면 — Sign Up · Sign In 버튼이 보이는 화면'),
-          },
-          {
-            title: '화면 확인',
-            body: 'Sign Up 또는 Sign In 버튼이 보이면 정상이에요. 계정이 없으면 아래 회원가입 단계로, 이미 있으면 로그인 단계로 넘어가세요.',
-            figure: fig('images/02-signup-signin-closeup.png', 'Sign Up · Sign In 버튼 클로즈업'),
+            title: '이름·이메일·비밀번호 입력',
+            body: 'Sign Up 화면에서 기본 정보를 입력하고 계속 진행해요.',
+            figure: fig('01-start-signin.png', 'Sign Up — 이름·이메일·비밀번호 입력'),
           },
         ],
+      },
+      {
+        kind: 'tip-box',
+        html: '<strong>Google·GitHub로 바로 시작할 수도 있어요.</strong><br>Sign Up 화면에서 <strong>Continue with Google</strong> 또는 <strong>Continue with GitHub</strong>을 누르면 이메일·비밀번호 입력 없이 가입·로그인할 수 있어요.',
+      },
+      {
+        kind: 'tip-box',
+        html: '이미 계정이 있나요?<br><strong>Sign In</strong>을 선택하면 로그인만 진행하면 됩니다.<br>별도 캡처 없이도 같은 방식으로 워크스페이스까지 이어져요.',
       },
     ],
   },
@@ -52,32 +61,27 @@ const body: ContentPageData[] = [
       {
         kind: 'section-header',
         label: '회원가입',
-        title: '계정 만들기',
-        lead: '이미 Postman 계정이 있다면 이 페이지는 건너뛰고 로그인 단계로 넘어가세요.',
+        title: '이메일 인증을 마쳐요',
+        lead: '계정 정보를 입력한 뒤, 그 계정을 사용할 수 있는지 확인하는 과정이에요.',
       },
       {
         kind: 'steps',
         steps: [
           {
-            title: 'Sign Up 클릭',
-            body: '홈 화면에서 <strong>Sign Up</strong> 버튼을 클릭해요.',
-            figure: fig('images/03-signup-button.png', 'Sign Up 버튼'),
+            title: '이메일로 인증 메일 확인',
+            body: '받은 메일을 열어 인증 링크를 누르거나, 안내에 따라 다음 단계로 넘어가요.',
+            figure: fig('03-verify-email-1.png', '받은 편지함 — Postman 인증 메일'),
           },
           {
-            title: '이메일·비밀번호 입력',
-            body: '사용할 이메일 주소와 비밀번호를 입력해요. 회사 계정 정책이 있다면 그 정책에 맞춰서 입력하세요.',
-            figure: fig('images/04-email-password-form.png', '이메일·비밀번호 입력 폼'),
-          },
-          {
-            title: '인증 메일 확인',
-            body: '입력한 메일함에서 Postman 인증 메일을 열고 <strong>Verify</strong> 버튼을 클릭해요. 메일이 안 보이면 스팸함도 확인하세요.',
-            figure: fig('images/05-verify-email.png', '인증 메일 예시 — Verify 버튼'),
+            title: '인증 번호 입력',
+            body: '메일에 적힌 인증 번호를 Postman 화면에 입력해요.',
+            figure: fig('03-verify-email-2.png', 'Postman — Verify email 화면'),
           },
         ],
       },
       {
         kind: 'warn-box',
-        html: '<strong>인증 메일이 안 와요</strong> — 스팸함 확인 → 1~2분 기다리기 → 재전송 버튼이 있으면 눌러보기. 그래도 안 오면 회사 메일 보안 설정으로 외부 인증 메일이 차단된 경우일 수 있어요. IT 담당자에게 문의하세요.',
+        html: '<strong>인증 메일이 안 와요</strong> — 스팸함 확인 → 1~2분 대기 → 재전송. 회사 메일은 IT에 외부 메일 허용을 요청해 보세요.',
       },
     ],
   },
@@ -86,33 +90,79 @@ const body: ContentPageData[] = [
     blocks: [
       {
         kind: 'section-header',
-        label: '로그인',
-        title: '계정으로 로그인하기',
-        lead: '이메일 또는 Google 계정으로 로그인할 수 있어요. 어느 쪽이든 로그인 후 화면은 동일해요. 방금 회원가입을 했다면 인증(Verify) 완료 후 여기에서 Sign In만 해주면 돼요.',
+        label: '첫 설정',
+        title: '워크스페이스 들어가기 전, 짧은 설정이 있어요',
+        lead: '가입 정보를 입력하면 이어서 나오는 짧은 설정 화면이에요. 안내에 따라 선택하면 워크스페이스로 들어갑니다.',
       },
       {
         kind: 'steps',
         steps: [
           {
-            title: 'Sign In 클릭',
-            body: '홈 화면에서 <strong>Sign In</strong> 버튼을 클릭해요.',
-            figure: fig('images/06-signin-button.png', 'Sign In 버튼'),
+            title: '사용 목적·역할 선택',
+            body: '팀 규모·역할 등 기본 정보를 고르는 첫 설정 화면이에요.',
+            figure: fig('04-Initial setup-1.png', 'Initial setup — 사용 목적·역할 선택'),
           },
           {
-            title: '로그인 방식 선택',
-            body: '이메일로 가입했다면 이메일·비밀번호를 입력해요. Google 계정으로 로그인하려면 <strong>Continue with Google</strong>을 클릭하고 계정을 선택해요.',
-            figure: fig('images/07-login-methods.png', '로그인 방식 선택 화면 — 이메일 입력 또는 Google 버튼'),
-          },
-          {
-            title: '로그인 완료 후 홈 화면 확인',
-            body: '로그인이 완료되면 Postman 홈 화면으로 이동해요. 왼쪽 메뉴와 가운데 작업 공간이 보이면 정상이에요.',
-            figure: fig('images/08-home-after-login.png', '로그인 후 홈 화면'),
+            title: '추가 설정 선택',
+            body: '이어서 나오는 항목을 선택하고 다음으로 진행해요. 끝나면 워크스페이스로 들어갑니다.',
+            figure: fig('04-Initial setup-2.png', 'Initial setup — 추가 설정'),
           },
         ],
       },
       {
         kind: 'tip-box',
-        html: 'Google 계정이 여러 개라면 로그인 창에서<br>사용할 계정을 정확히 선택하세요.<br>나중에 계정을 바꾸려면 로그아웃 후 다시 로그인해야 해요.',
+        html: '설정이 끝나면 Postman이 워크스페이스와 샘플 API 요청을 자동으로 만들어 줄 수 있어요.<br>잠시 후 다음 페이지처럼 화면이 보이면 정상이에요.',
+      },
+    ],
+  },
+  {
+    type: 'content',
+    blocks: [
+      {
+        kind: 'section-header',
+        label: '화면 구성',
+        title: '로그인 후 워크스페이스 화면을 훑어봐요',
+        lead: '설정이 끝나면 아래처럼 워크스페이스 화면으로 들어옵니다. Vol.2에서는 가운데에서 첫 요청을 보낼 거예요.',
+      },
+      {
+        kind: 'figure',
+        figure: fig(
+          '05-home-after-login.png',
+          '로그인·설정 완료 후 워크스페이스 — 왼쪽 Collection·가운데 작업 영역',
+        ),
+      },
+      {
+        kind: 'cards-2',
+        cards: [
+          {
+            lucide: 'folder-open',
+            iconBg: '#e0f2fe',
+            iconColor: '#0369a1',
+            title: '왼쪽 Collections',
+            body: '자동 생성된 샘플 요청·Collection이 보일 수 있어요. Vol.2에서 직접 만들기도 합니다.',
+          },
+          {
+            lucide: 'pen-line',
+            iconBg: '#fef3c7',
+            iconColor: '#b45309',
+            title: '가운데 작업 영역',
+            body: '요청 URL·Send 버튼이 있는 곳이에요. API를 보내는 핵심 공간입니다.',
+          },
+          {
+            lucide: 'building-2',
+            iconBg: '#ede9fe',
+            iconColor: '#6d28d9',
+            title: '상단 Workspace 이름',
+            body: '지금 쓰는 작업 공간이에요. 1-3에서 내 Workspace를 정리해 봅니다.',
+          },
+          {
+            lucide: 'user-circle',
+            iconBg: '#dcfce7',
+            iconColor: '#15803d',
+            title: '우측 상단 계정',
+            body: '로그인한 계정이 보이면 회원가입·로그인 흐름이 끝난 상태예요.',
+          },
+        ],
       },
     ],
   },
@@ -122,24 +172,21 @@ const body: ContentPageData[] = [
       {
         kind: 'section-header',
         label: '확인',
-        title: '이렇게 보이면 완료예요',
-        lead: '로그인 후 아래와 비슷한 화면이 보이면 1-2는 끝난 거예요.',
-      },
-      {
-        kind: 'figure',
-        figure: fig('images/09-home-final-check.png', '로그인 후 Postman 홈 화면 전체 — 왼쪽 메뉴 + 가운데 작업 공간'),
+        title: '이렇게 보이면 1-2 완료예요',
+        lead: '아래를 모두 확인했으면 다음 파트(Workspace)로 넘어가도 됩니다.',
       },
       {
         kind: 'check-done',
         items: [
-          '왼쪽에 메뉴(Collections, Environments 등)가 보인다',
-          '오른쪽 상단 또는 프로필 영역에 내 계정 이름·아이콘이 보인다',
-          '가운데 작업 공간이 열려 있다 (비어 있어도 괜찮아요)',
+          'Sign Up 또는 Sign In을 마쳤다',
+          '이메일 인증·첫 설정(Initial setup)을 끝냈다',
+          '워크스페이스 화면에서 Collections·작업 영역을 찾을 수 있다',
+          '왼쪽에 샘플 API 요청이 보여도 정상이다 (자동 생성)',
         ],
       },
       {
         kind: 'tip-box',
-        html: '로그인 직후 동기화가 진행되면서 잠깐 느릴 수 있어요. 10~20초 정도 기다리면 메뉴가 나타나요.',
+        html: '화면이 잠깐 비어 보이면 10~20초만 기다려 보세요.<br>동기화가 끝나면 메뉴와 샘플 요청이 채워집니다.',
       },
     ],
   },
@@ -147,27 +194,27 @@ const body: ContentPageData[] = [
 
 export const pages = buildPartPages({
   cover: {
-    badges: ['Postman 사용법 자료집', 'Vol.1 설치 및 시작하기'],
+    badges: ['Postman 사용법 자료집', 'Vol.1 Postman 입문'],
     warmBadge: '1-2',
-    partLabel: 'PART 02 · 계정 연결하기',
-    titleLines: ['회원가입 &', '로그인'],
+    partLabel: 'PART 02 · 시작하기',
+    titleLines: ['Postman', '시작하기'],
     leadLines: [
-      'Postman을 열고 계정을 연결해요',
-      'postman.com에 접속해서 계정을 만들거나 로그인하고, 첫 화면까지 확인해요',
+      '회원가입·로그인부터 화면 구성까지',
+      '실제 화면 순서대로 따라해요',
     ],
   },
   toc: {
     goals: [
-      'postman.com에 접속해서 Postman 화면을 열 수 있어요.',
-      '이메일 또는 Google 계정으로 로그인할 수 있어요.',
-      '로그인 후 홈 화면이 정상적으로 보이는지 확인했어요.',
+      'Sign Up 또는 Sign In으로 계정을 연결할 수 있어요.',
+      '이메일 인증·첫 설정(Initial setup)을 마칠 수 있어요.',
+      '워크스페이스 화면의 주요 영역을 구분할 수 있어요.',
     ],
-    quote: '이 파트 흐름: 웹으로 열기 → 회원가입 → 로그인 → 홈 화면 확인',
+    quote: '이 파트 흐름: 회원가입·인증 → 첫 설정 → 화면 구성',
     flowCards: [
-      { title: '웹으로 열기', body: 'postman.com 접속 · Sign Up/Sign In 확인' },
-      { title: '회원가입', body: 'Sign Up · 이메일 인증' },
-      { title: '로그인', body: '이메일 또는 Google 로그인' },
-      { title: '홈 화면 확인', body: '왼쪽 메뉴 · 가운데 작업 공간 확인' },
+      { title: '회원가입', body: '정보 입력 · Google/GitHub 로그인' },
+      { title: '이메일 인증', body: '인증 메일 · 인증 번호' },
+      { title: '첫 설정', body: 'Initial setup' },
+      { title: '화면 구성', body: '워크스페이스 · 주요 영역' },
     ],
   },
   body,
@@ -175,7 +222,7 @@ export const pages = buildPartPages({
     roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-2',
     roadmap: VOL01_ROADMAP,
-    ctaTitle: '계정 연결 완료! 다음은 화면 익히기',
-    ctaSubtitle: '1-3에서 Postman 화면 각 부분이 뭔지 살펴볼 거예요.',
+    ctaTitle: '시작하기 완료! 다음은 Workspace',
+    ctaSubtitle: '1-3에서 내 Workspace를 정리해 볼 거예요.',
   },
 })

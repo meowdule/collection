@@ -23,6 +23,7 @@ const entry = computed(() => resolveGuidePart(guidePath.value))
   <FlipbookViewer
     v-else
     v-model:spread-index="spreadIndex"
+    :series-slug="entry.meta.themeKey ?? 'default'"
     :meta="entry.meta"
     :pages="entry.pages"
   />

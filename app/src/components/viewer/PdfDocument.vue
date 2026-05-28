@@ -3,6 +3,7 @@ import type { GuideMeta, GuidePage } from '@/types/guide'
 import GuidePageView from '@/components/viewer/GuidePageView.vue'
 
 defineProps<{
+  seriesSlug?: string
   meta: GuideMeta
   pages: GuidePage[]
 }>()
@@ -15,6 +16,7 @@ defineProps<{
       :key="index"
       :page="page"
       :meta="meta"
+      :series-slug="seriesSlug"
       :page-index="index + 1"
       :total-pages="pages.length"
       :show-header="page.type !== 'cover'"
