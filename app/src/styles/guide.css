@@ -1605,9 +1605,9 @@ body {
 .guide-page--cover .cover-object {
   position: absolute;
   right: -140px;
-  top: 24%;
-  bottom: -80px;
-  width: 760px;
+  top: 28%;
+  bottom: -100px;
+  width: 608px;
   height: auto;
   color: var(--ink-strong);
   pointer-events: none;
@@ -1622,6 +1622,7 @@ body {
   object-fit: contain;
   object-position: bottom right;
   display: block;
+  opacity: 0.82;
 }
 
 .page-content-grid {
