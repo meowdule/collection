@@ -915,6 +915,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--bg-surface);
 }
 
 .flipbook-toolbar {
@@ -1394,7 +1395,9 @@ body {
   --ink-2: #374151;
   --ink-3: #64748b;
   --paper: #ffffff;
-  --bg-surface: #f7f7f5;
+  --page-bg: #f7f7f5;
+  --bg-surface: #f6f4ef;
+  --cover-bg: #f4f1eb;
   --line: #e5e7eb;
   --title: #111827;
   --accent: #64748b;
@@ -1419,6 +1422,10 @@ body {
   box-shadow: none;
   border: 1px solid var(--line);
   border-radius: 0;
+}
+
+.guide-page:not(.guide-page--cover) {
+  background: var(--page-bg);
 }
 
 .guide-page[data-series='postman'] {
@@ -1447,12 +1454,13 @@ body {
 }
 
 .guide-page--cover {
-  background: var(--paper);
+  background: var(--cover-bg);
   color: var(--title);
+  border-color: #e5e7eb;
 }
 
 .page-strip {
-  background: var(--paper);
+  background: var(--page-bg);
   border-bottom: 1px solid var(--line);
   color: var(--ink-3);
   font-size: 10px;
@@ -1465,61 +1473,155 @@ body {
   color: var(--title);
 }
 
+.page-foot {
+  background: var(--page-bg);
+  border-top-color: var(--line);
+}
+
 .page-inner {
   padding: 24px 28px 20px;
+  background: transparent;
 }
 
-.cover {
-  padding: 84px 64px 64px;
-  background: var(--paper);
+/* ── COVER: Centered editorial + bottom-right brand object ── */
+.guide-page--cover .cover {
+  position: relative;
+  height: 100%;
+  padding: 0;
+  background: var(--cover-bg);
+  overflow: hidden;
 }
 
-.cover::before,
-.cover::after {
+.guide-page--cover .cover::before,
+.guide-page--cover .cover::after {
   display: none;
 }
 
-.cover-badges {
-  margin-bottom: 22px;
+.guide-page--cover .cover-stage {
+  position: relative;
+  height: 100%;
+  min-height: var(--page-h);
 }
 
-.badge {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--ink-3);
+.guide-page--cover .cover-copy {
+  position: absolute;
+  top: 28%;
+  left: 11%;
+  transform: none;
+  z-index: 2;
+  text-align: left;
+  padding: 0;
+  max-width: 480px;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.guide-page--cover .cover-series {
+  margin: 0 0 16px;
   font-size: 11px;
   font-weight: 700;
-  padding: 5px 12px;
-}
-
-.badge-warm {
-  color: var(--title);
-  border-color: var(--accent-gold);
-  background: rgba(200, 169, 107, 0.08);
-}
-
-.cover-part {
-  font-size: 14px;
-  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--ink-3);
-  margin-bottom: 10px;
 }
 
-.cover h1 {
-  color: var(--title);
-  font-size: 58px;
+.guide-page--cover .cover-series::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 14px 0 0;
+  background: var(--series-accent);
+  opacity: 1;
+}
+
+.guide-page--cover .cover-vol-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 22px;
+  padding: 10px 0 10px 16px;
+  border: none;
+  border-left: 4px solid var(--series-accent);
+  background: transparent;
+}
+
+.guide-page--cover .cover-vol-code {
+  margin: 0;
+  font-size: 34px;
   font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
-  margin-bottom: 20px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--series-accent);
+  line-height: 1;
 }
 
-.cover-lead {
-  color: var(--ink-2);
-  font-size: 17px;
-  line-height: 1.72;
-  max-width: 560px;
+.guide-page--cover .cover-vol-title {
+  margin: 0 0 36px;
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--title);
+}
+
+.guide-page--cover .cover-part-block {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 24px;
+  border-top: 3px solid var(--series-accent);
+  min-width: 220px;
+}
+
+.guide-page--cover .cover-part-num {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--series-accent);
+}
+
+.guide-page--cover .cover-part-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--title);
+}
+
+.guide-page--cover .cover-part-label {
+  margin: 14px 0 0;
+  padding: 0 0 0 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-strong);
+  border: none;
+  border-left: 2px solid var(--series-accent);
+  background: transparent;
+}
+
+.guide-page--cover .cover-object {
+  position: absolute;
+  right: -140px;
+  top: 24%;
+  bottom: -80px;
+  width: 760px;
+  height: auto;
+  color: var(--ink-strong);
+  pointer-events: none;
+  z-index: 1;
+  background: transparent;
+}
+
+.guide-page--cover .cover-graphic-img,
+.guide-page--cover .cover-graphic-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
 }
 
 .page-content-grid {
@@ -1749,7 +1851,7 @@ body {
 }
 
 .quote-bubble {
-  background: rgba(15, 23, 42, 0.03);
+  background: var(--paper);
   border-left: 2px solid var(--ink-strong);
   border-top: 1px solid var(--line);
   border-right: 1px solid var(--line);
@@ -1786,6 +1888,7 @@ body {
   margin-right: auto;
   border-radius: 10px;
   border: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .figure-placeholder {

@@ -1,6 +1,7 @@
 import type { ContentPageData, FigureSlot } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
+import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import meta from './meta.json'
 
 export const partId = '1-3-web-install'
@@ -176,14 +177,10 @@ const body: ContentPageData[] = [
 
 export const pages = buildPartPages({
   cover: {
-    badges: ['Postman 사용법 자료집', 'Vol.1 Postman 입문'],
-    warmBadge: '1-3',
+    brand: VOL01_COVER,
+    partNum: '1-3',
+    partTitle: 'Workspace 만들기',
     partLabel: 'PART 03 · Workspace',
-    titleLines: ['Workspace', '만들기'],
-    leadLines: [
-      '내 작업 공간을 만들고',
-      '기본 세팅을 확인해요',
-    ],
   },
   toc: {
     goals: [

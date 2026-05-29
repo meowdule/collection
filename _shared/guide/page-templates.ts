@@ -1,13 +1,18 @@
-import type { CardItem, ContentPageData, CoverPageData, GuidePage, RoadmapItem } from '@/types/guide'
+import type {
+  CardItem,
+  ContentPageData,
+  CoverPageData,
+  GuidePage,
+  RoadmapItem,
+  VolCoverBrand,
+} from '@/types/guide'
 
-/** p1 표지 — titleLines 필수 */
+/** p1 표지 — Vol 브랜드 공통 + Part별 식별 정보만 변경 */
 export interface PartCoverInput {
-  badges: string[]
-  warmBadge: string
-  partLabel: string
-  /** 필수: 표지 제목 (줄바꿈은 배열 요소로) */
-  titleLines: string[]
-  leadLines: string[]
+  brand: VolCoverBrand
+  partNum: string
+  partTitle: string
+  partLabel?: string
 }
 
 /** p2 목차 — 학습 목표 + 이 파트 흐름 (고정 레이아웃) */
@@ -52,16 +57,15 @@ const FLOW_CARD_COLORS = [
 
 /** p1 표지 */
 export function buildCoverPage(input: PartCoverInput): CoverPageData {
-  if (!input.titleLines.length) {
-    throw new Error('표지 titleLines는 필수입니다.')
+  if (!input.partNum || !input.partTitle) {
+    throw new Error('표지 partNum, partTitle은 필수입니다.')
   }
   return {
     type: 'cover',
-    badges: input.badges,
-    warmBadge: input.warmBadge,
+    brand: input.brand,
+    partNum: input.partNum,
+    partTitle: input.partTitle,
     partLabel: input.partLabel,
-    titleLines: input.titleLines,
-    leadLines: input.leadLines,
   }
 }
 

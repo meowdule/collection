@@ -1,6 +1,7 @@
 import type { ContentPageData, FigureSlot } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
+import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import meta from './meta.json'
 
 export const partId = '1-1-postman-intro'
@@ -246,14 +247,10 @@ API, Request, Response 같은 단어가 처음 등장하는 파트에서 짧게 
 
 export const pages = buildPartPages({
   cover: {
-    badges: ['Postman 사용법 자료집', 'Vol.1 Postman 입문'],
-    warmBadge: '1-1',
+    brand: VOL01_COVER,
+    partNum: '1-1',
+    partTitle: 'Postman이 뭔가요',
     partLabel: 'PART 01 · Postman 소개 & 설치',
-    titleLines: ['Postman이 뭔가요?'],
-    leadLines: [
-      'Postman을 처음 쓰는 분을 위한 입문 자료집',
-      '개요를 파악하고 앱을 직접 설치해요',
-    ],
   },
   toc: {
     goals: [

@@ -92,13 +92,24 @@ export type ContentBlock =
   | { kind: 'figure'; figure: FigureSlot }
   | { kind: 'os-tabs'; tabs: { label: string; active?: boolean }[] }
 
+/** Vol 단위 공통 표지 브랜드 (같은 Vol의 모든 Part가 공유) */
+export interface VolCoverBrand {
+  seriesTitle: string
+  volCode: string
+  volSubtitle: string
+  /** Vol마다 다른 그래픽 모티프 키 */
+  coverGraphic: string
+}
+
 export interface CoverPageData {
   type: 'cover'
-  badges: string[]
-  warmBadge?: string
-  partLabel: string
-  titleLines: string[]
-  leadLines: string[]
+  brand: VolCoverBrand
+  /** 파트 번호 — Part별 변경. 예: 1-1 */
+  partNum: string
+  /** 현재 파트명 — Part별 변경 */
+  partTitle: string
+  /** 선택: 챕터/진행 라벨 */
+  partLabel?: string
 }
 
 export interface ContentPageData {

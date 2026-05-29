@@ -1,6 +1,7 @@
 import type { ContentPageData, FigureSlot } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
+import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import meta from './meta.json'
 
 export const partId = '1-2-signup-login'
@@ -194,14 +195,10 @@ const body: ContentPageData[] = [
 
 export const pages = buildPartPages({
   cover: {
-    badges: ['Postman 사용법 자료집', 'Vol.1 Postman 입문'],
-    warmBadge: '1-2',
+    brand: VOL01_COVER,
+    partNum: '1-2',
+    partTitle: 'Postman 시작하기',
     partLabel: 'PART 02 · 시작하기',
-    titleLines: ['Postman', '시작하기'],
-    leadLines: [
-      '회원가입·로그인부터 화면 구성까지',
-      '실제 화면 순서대로 따라해요',
-    ],
   },
   toc: {
     goals: [

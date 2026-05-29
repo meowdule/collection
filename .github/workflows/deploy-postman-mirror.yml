@@ -6,7 +6,7 @@ on:
       include_json:
         description: 'Include .json files from series/postman/vol-01-start/publish-assets'
         required: false
-        default: true
+        default: false
         type: boolean
   push:
     branches: [main]
@@ -39,10 +39,10 @@ jobs:
 
       - name: Build publish payload
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.include_json }}" = "false" ]; then
-            node scripts/build-postman-publish.mjs --out-dir .deploy-mirror
-          else
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.include_json }}" = "true" ]; then
             node scripts/build-postman-publish.mjs --out-dir .deploy-mirror --include-json
+          else
+            node scripts/build-postman-publish.mjs --out-dir .deploy-mirror
           fi
           PDF_COUNT=$(find .deploy-mirror/postman -type f -name '*.pdf' | wc -l)
           echo "PDF count: $PDF_COUNT"
@@ -50,6 +50,12 @@ jobs:
             echo "ERROR: No PDF files in .deploy-mirror/postman"
             exit 1
           fi
+
+      - name: Build flipbook viewer for GitHub Pages
+        run: npm run build
+        working-directory: app
+        env:
+          VITE_BASE_PATH: /collection/
 
       - name: Checkout destination repo (B)
         uses: actions/checkout@v4
@@ -62,6 +68,13 @@ jobs:
         run: |
           mkdir -p b-repo/postman
           rsync -av --delete .deploy-mirror/postman/ b-repo/postman/
+
+      - name: Sync viewer to destination root (keep postman/)
+        run: |
+          rm -rf b-repo/assets
+          find b-repo -maxdepth 1 -type f \( -name 'index.html' -o -name 'vite.svg' -o -name 'favicon.svg' \) -delete 2>/dev/null || true
+          rsync -av app/dist/ b-repo/
+          touch b-repo/.nojekyll
 
       - name: Commit and push when changed
         run: |
