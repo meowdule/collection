@@ -1,36 +1,23 @@
-import type { ContentPageData, FigureSlot } from '@/types/guide'
+import type { ContentPageData } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
-import { createPartFigure } from '@shared/guide/part-figures'
+import { createPartFigFn } from '@shared/guide/part-figures'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import { VOL01_PRACTICE_ECHO_BASE } from '@series/postman/vol-01-start/practice-collection'
 import meta from './meta.json'
-import imgOpenGetRequest from './images/01-open-get-request.png?url'
-import imgUrlInput from './images/02-url-input.png?url'
-import imgSendResponse from './images/03-send-response.png?url'
-import imgResponseBody from './images/04-response-body.png?url'
-import imgFailureResponse from './images/05-failure-response.png?url'
 
 export const partId = '1-6-basic-get'
 export { meta }
 
 const GET_ECHO_URL = `${VOL01_PRACTICE_ECHO_BASE}/get`
 
-const partImageUrls: Record<string, string> = {
-  '01-open-get-request.png': imgOpenGetRequest,
-  '02-url-input.png': imgUrlInput,
-  '03-send-response.png': imgSendResponse,
-  '04-response-body.png': imgResponseBody,
-  '05-failure-response.png': imgFailureResponse,
-}
-
-const partImages = Object.fromEntries(
-  Object.entries(partImageUrls).map(([file, url]) => [`./images/${file}`, url]),
+const fig = createPartFigFn(
+  import.meta.glob<string>('./images/*.{png,jpg,jpeg,webp,gif}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
 )
-
-function fig(file: string, caption: string): FigureSlot {
-  return createPartFigure(partImages, file, caption)
-}
 
 const body: ContentPageData[] = [
   {

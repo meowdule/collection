@@ -1,5 +1,6 @@
-import type { ContentPageData, FigureSlot } from '@/types/guide'
+import type { ContentPageData } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
+import { createPartFigFn } from '@shared/guide/part-figures'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import meta from './meta.json'
@@ -7,24 +8,13 @@ import meta from './meta.json'
 export const partId = '1-1-postman-intro'
 export { meta }
 
-const partImages = import.meta.glob<string>('./images/*', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
-
-function fig(file: string, caption: string): FigureSlot {
-  const key = `./images/${file}`
-  const imageSrc = partImages[key]
-  if (!imageSrc) {
-    return {
-      placeholderCode: `images/${file}`,
-      placeholderLabel: `이미지 없음: ${file}`,
-      caption,
-    }
-  }
-  return { imageSrc, caption }
-}
+const fig = createPartFigFn(
+  import.meta.glob<string>('./images/*.{png,jpg,jpeg,webp,gif}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+)
 
 const body: ContentPageData[] = [
   {

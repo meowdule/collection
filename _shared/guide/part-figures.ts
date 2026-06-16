@@ -1,6 +1,18 @@
 import type { FigureSlot } from '@/types/guide'
 
-/** pages.ts — import.meta.glob('./images/*.{png,...}') 결과로 fig() 생성 */
+/**
+ * pages.ts 이미지 glob — Vite는 패턴·옵션 모두 리터럴이어야 함.
+ *
+ * const fig = createPartFigFn(
+ *   import.meta.glob<string>('./images/*.{png,jpg,jpeg,webp,gif}', {
+ *     eager: true,
+ *     query: '?url',
+ *     import: 'default',
+ *   }),
+ * )
+ */
+
+/** glob 결과로 fig() 생성 */
 export function createPartFigure(
   partImages: Record<string, string>,
   file: string,
@@ -21,4 +33,9 @@ export function createPartFigure(
     }
   }
   return { imageSrc, caption }
+}
+
+export function createPartFigFn(partImages: Record<string, string>) {
+  return (file: string, caption: string): FigureSlot =>
+    createPartFigure(partImages, file, caption)
 }

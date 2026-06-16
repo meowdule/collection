@@ -1,6 +1,6 @@
-import type { ContentPageData, FigureSlot } from '@/types/guide'
+import type { ContentPageData } from '@/types/guide'
 import { buildPartPages } from '@shared/guide/page-templates'
-import { createPartFigure } from '@shared/guide/part-figures'
+import { createPartFigFn } from '@shared/guide/part-figures'
 import { VOL01_ROADMAP, VOL01_ROADMAP_SECTION_LABEL } from '@series/postman/roadmap'
 import { VOL01_COVER } from '@series/postman/vol-01-start/cover'
 import { VOL01_PRACTICE_ECHO_BASE } from '@series/postman/vol-01-start/practice-collection'
@@ -12,15 +12,13 @@ export { meta }
 const GET_ECHO_URL = `${VOL01_PRACTICE_ECHO_BASE}/get`
 const GET_ECHO_URL_WITH_NAME = `${GET_ECHO_URL}?name=kim`
 
-const partImages = import.meta.glob<string>('./images/*.{png,jpg,jpeg,webp,gif}', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-})
-
-function fig(file: string, caption: string): FigureSlot {
-  return createPartFigure(partImages, file, caption)
-}
+const fig = createPartFigFn(
+  import.meta.glob<string>('./images/*.{png,jpg,jpeg,webp,gif}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
+)
 
 const body: ContentPageData[] = [
   {
