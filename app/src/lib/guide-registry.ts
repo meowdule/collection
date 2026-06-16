@@ -5,6 +5,7 @@ import * as part13 from '@series/postman/vol-01-start/parts/1-3-web-install/page
 import * as part14 from '@series/postman/vol-01-start/parts/1-4-practice-files/pages'
 import * as part15 from '@series/postman/vol-01-start/parts/1-5-collection-create/pages'
 import * as part16 from '@series/postman/vol-01-start/parts/1-6-basic-get/pages'
+import * as part17 from '@series/postman/vol-01-start/parts/1-7-query-params/pages'
 
 export interface GuidePartEntry {
   series: string
@@ -56,6 +57,13 @@ const registry: Record<string, GuidePartEntry> = {
     part: part16.partId,
     meta: part16.meta,
     pages: part16.pages,
+  },
+  'postman/vol-01-start/1-7-query-params': {
+    series: 'postman',
+    vol: 'vol-01-start',
+    part: part17.partId,
+    meta: part17.meta,
+    pages: part17.pages,
   },
 }
 

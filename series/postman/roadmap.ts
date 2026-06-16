@@ -14,6 +14,7 @@ export const VOL01_ROADMAP: RoadmapEntry[] = [
   { num: '1-4', label: '실습 Collection 가져오기' },
   { num: '1-5', label: 'Collection 만들기' },
   { num: '1-6', label: '기본 GET 요청 보내기' },
+  { num: '1-7', label: 'Query Params 요청 보내기' },
 ]
 
 export const VOL01_ROADMAP_SECTION_LABEL = 'Vol.1 로드맵'
