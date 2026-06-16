@@ -1,0 +1,120 @@
+{
+  "info": {
+    "_postman_id": "960563b4-e4da-4d64-87cf-c0163c188f00",
+    "name": "Vol.1 실습 Collection",
+    "description": "Postman 입문 Vol.1 실습용 Collection입니다.\n\n모든 요청은 **Postman Echo** (`https://postman-echo.com`) 기반입니다.\n\n- **연결 테스트**: Import 직후 Echo Send 확인\n- **GET / Params / POST**: 1-6 ~ 1-8 실습에서 사용",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "연결 테스트",
+      "description": "Import가 잘 됐는지 바로 확인하는 Echo 요청입니다.",
+      "item": [
+        {
+          "name": "GET Echo 테스트",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get?source=vol1-practice",
+              "protocol": "https",
+              "host": ["postman-echo.com"],
+              "path": ["get"],
+              "query": [
+                {
+                  "key": "source",
+                  "value": "vol1-practice"
+                }
+              ]
+            },
+            "description": "Import 직후 Send를 눌러 200 응답이 오면 연결 테스트 성공입니다."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "GET 요청 실습",
+      "description": "1-6 기본 GET 요청 실습용",
+      "item": [
+        {
+          "name": "GET 기본 요청",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get",
+              "protocol": "https",
+              "host": ["postman-echo.com"],
+              "path": ["get"]
+            },
+            "description": "기본 GET 요청 — Echo가 보낸 요청 정보를 그대로 돌려줍니다."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Query Params 실습",
+      "description": "1-7 Query Params 실습용",
+      "item": [
+        {
+          "name": "GET Query Params 요청",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://postman-echo.com/get?name=kim",
+              "protocol": "https",
+              "host": ["postman-echo.com"],
+              "path": ["get"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "kim"
+                }
+              ]
+            },
+            "description": "Query Params — 응답 args에 name=kim이 보이면 성공입니다."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POST 요청 실습",
+      "description": "1-8 POST Body 실습용",
+      "item": [
+        {
+          "name": "POST Body 요청",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"kim\",\n  \"role\": \"tester\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://postman-echo.com/post",
+              "protocol": "https",
+              "host": ["postman-echo.com"],
+              "path": ["post"]
+            },
+            "description": "POST Body — Echo가 보낸 JSON을 응답 data에 그대로 돌려줍니다."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

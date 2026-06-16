@@ -2,6 +2,9 @@ import type { GuideMeta, GuidePage } from '@/types/guide'
 import * as part11 from '@series/postman/vol-01-start/parts/1-1-postman-intro/pages'
 import * as part12 from '@series/postman/vol-01-start/parts/1-2-signup-login/pages'
 import * as part13 from '@series/postman/vol-01-start/parts/1-3-web-install/pages'
+import * as part14 from '@series/postman/vol-01-start/parts/1-4-practice-files/pages'
+import * as part15 from '@series/postman/vol-01-start/parts/1-5-collection-create/pages'
+import * as part16 from '@series/postman/vol-01-start/parts/1-6-basic-get/pages'
 
 export interface GuidePartEntry {
   series: string
@@ -32,6 +35,27 @@ const registry: Record<string, GuidePartEntry> = {
     part: part13.partId,
     meta: part13.meta,
     pages: part13.pages,
+  },
+  'postman/vol-01-start/1-4-practice-files': {
+    series: 'postman',
+    vol: 'vol-01-start',
+    part: part14.partId,
+    meta: part14.meta,
+    pages: part14.pages,
+  },
+  'postman/vol-01-start/1-5-collection-create': {
+    series: 'postman',
+    vol: 'vol-01-start',
+    part: part15.partId,
+    meta: part15.meta,
+    pages: part15.pages,
+  },
+  'postman/vol-01-start/1-6-basic-get': {
+    series: 'postman',
+    vol: 'vol-01-start',
+    part: part16.partId,
+    meta: part16.meta,
+    pages: part16.pages,
   },
 }
 

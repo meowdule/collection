@@ -200,7 +200,7 @@ export const pages = buildPartPages({
     roadmapSectionLabel: VOL01_ROADMAP_SECTION_LABEL,
     currentPartNum: '1-3',
     roadmap: VOL01_ROADMAP,
-    ctaTitle: 'Workspace 완료! 다음은 실습 파일 준비',
-    ctaSubtitle: '1-4에서 Collection.json Import와 Mock Server를 확인해요.',
+    ctaTitle: 'Workspace 완료! 다음은 실습 Collection 가져오기',
+    ctaSubtitle: '1-4에서 실습 Collection을 가져와 Echo 요청을 확인해요.',
   },
 })

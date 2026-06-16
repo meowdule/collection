@@ -117,7 +117,7 @@ const indexMode = computed<'full' | 'breadcrumb' | 'none'>(() => {
           target="_blank"
           rel="noopener noreferrer"
         >{{ block.headline }}</a>
-        <p v-else class="key-line">{{ block.headline }}</p>
+        <p v-else class="key-line" v-html="block.headline" />
         <p v-html="block.body" />
       </div>
 

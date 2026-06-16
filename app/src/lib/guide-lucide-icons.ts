@@ -2,6 +2,8 @@ import type { Component } from 'vue'
 import {
   Building2,
   Download,
+  FileCode,
+  Folder,
   FolderOpen,
   Globe,
   LayoutTemplate,
@@ -13,6 +15,8 @@ import {
 /** pages.ts 카드·패널에서 쓰는 Lucide 아이콘 키 */
 export const GUIDE_LUCIDE_ICONS: Record<string, Component> = {
   'folder-open': FolderOpen,
+  folder: Folder,
+  'file-code': FileCode,
   'pen-line': PenLine,
   'building-2': Building2,
   'user-circle': UserCircle,

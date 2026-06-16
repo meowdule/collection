@@ -11,7 +11,9 @@ export const VOL01_ROADMAP: RoadmapEntry[] = [
   { num: '1-1', label: 'Postman이 뭔가요' },
   { num: '1-2', label: 'Postman 시작하기' },
   { num: '1-3', label: 'Workspace 만들기' },
-  { num: '1-4', label: '실습 파일 사용법' },
+  { num: '1-4', label: '실습 Collection 가져오기' },
+  { num: '1-5', label: 'Collection 만들기' },
+  { num: '1-6', label: '기본 GET 요청 보내기' },
 ]
 
 export const VOL01_ROADMAP_SECTION_LABEL = 'Vol.1 로드맵'
