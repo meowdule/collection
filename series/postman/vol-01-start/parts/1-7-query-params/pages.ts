@@ -140,7 +140,11 @@ const body: ContentPageData[] = [
       },
       {
         kind: 'tip-box',
-        html: 'Params를 지우거나 체크를 끄면 URL에서 <code>?name=kim</code>이 사라져요. 다시 켜고 Send하면 동일하게 동작합니다.',
+        html: 'Params를 지우거나 <strong>체크를 끄면</strong> URL에서 <code>?name=kim</code>이 사라져요. Send하면 <code>args</code>가 비어 있게 나옵니다.',
+      },
+      {
+        kind: 'figure',
+        figure: fig('05-params-unchecked.png', '체크 해제 — URL에 ? 없음 · args: {}'),
       },
     ],
   },

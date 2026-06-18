@@ -8,3 +8,4 @@
 | `02-params-tab.png` | Params 탭 — Key · Value 입력 | 실습 STEP 2 | 사용 |
 | `03-url-with-params.png` | URL `?name=kim` · Params · Send 후 args | 실습 STEP 3 | 사용 |
 | `04-response-args.png` | Body `args` — name: kim | 응답 확인 | 사용 |
+| `05-params-unchecked.png` | 체크 해제 — URL에 ? 없음 · args: {} | Params 팁 | 사용 |

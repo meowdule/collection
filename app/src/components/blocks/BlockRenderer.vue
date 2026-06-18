@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { ContentBlock } from '@/types/guide'
 import GuideLucideIcon from '@/components/blocks/GuideLucideIcon.vue'
+import { resolveFigureSrc } from '@shared/guide/figure-src'
 
 const props = defineProps<{
   blocks: ContentBlock[]
@@ -233,7 +234,11 @@ const indexMode = computed<'full' | 'breadcrumb' | 'none'>(() => {
             <h4>{{ step.title }}</h4>
             <p v-html="step.body" />
             <figure v-if="step.figure" class="figure-slot">
-              <img v-if="step.figure.imageSrc" :src="step.figure.imageSrc" :alt="step.figure.caption" />
+              <img
+                v-if="step.figure.imageSrc"
+                :src="resolveFigureSrc(step.figure.imageSrc)"
+                :alt="step.figure.caption"
+              />
               <div v-else class="figure-placeholder">
                 <span class="fig-icon">🖼</span>
                 <span v-if="step.figure.placeholderLabel" class="fig-label">{{ step.figure.placeholderLabel }}</span>
@@ -246,7 +251,11 @@ const indexMode = computed<'full' | 'breadcrumb' | 'none'>(() => {
       </div>
 
       <figure v-else-if="block.kind === 'figure'" class="figure-slot">
-        <img v-if="block.figure.imageSrc" :src="block.figure.imageSrc" :alt="block.figure.caption" />
+        <img
+          v-if="block.figure.imageSrc"
+          :src="resolveFigureSrc(block.figure.imageSrc)"
+          :alt="block.figure.caption"
+        />
         <div v-else class="figure-placeholder">
           <span class="fig-icon">🖼</span>
           <span v-if="block.figure.placeholderLabel" class="fig-label">{{ block.figure.placeholderLabel }}</span>

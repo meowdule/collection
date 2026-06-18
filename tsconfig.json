@@ -6,11 +6,10 @@
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["app/src/*"],
-      "@series/*": ["series/*"],
-      "@shared/*": ["_shared/*"]
+      "@/*": ["./app/src/*"],
+      "@series/*": ["./series/*"],
+      "@shared/*": ["./_shared/*"]
     }
   },
   "include": [
